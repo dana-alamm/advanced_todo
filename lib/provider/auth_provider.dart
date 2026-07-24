@@ -15,11 +15,11 @@ class AuthProvider  extends ChangeNotifier{
   List<TaskModel> get filteredTasks{
     if(currentFilter=='Active'){
       return _tasks.where((task)=>!task.isDone).toList();
-    }else if(_currentFilter=='Completed'){
+    }else if(currentFilter=='Completed'){
       return _tasks.where((task)=>task.isDone).toList();
 
     }
-    return tasks;
+    return _tasks;
   }
 
   void toggleTheme(){
