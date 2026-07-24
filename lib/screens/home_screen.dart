@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/provider/auth_provider.dart';
 import 'package:flutter_application_11/theme/app_colors.dart';
+import 'package:flutter_application_11/widgets/filter_tabs.dart';
+import 'package:flutter_application_11/widgets/todo_tile.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -192,81 +194,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount:authProvider.filteredTasks.length ,
                           itemBuilder: (context,index){
                             final task=authProvider.filteredTasks[index];
-                         return Padding(
-                          //key: ObjectKey(task),
-                          padding: EdgeInsets.symmetric(vertical: 8.0),
-                          child:Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  authProvider.toggleTaskStatus(index);
-                                
-                                },
-                              
-                              child:Container(
-                                width: 26,
-                                height: 26,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  gradient: task.isDone
-                                  ?const LinearGradient(
-                                    colors:[
-                                      Color(0xff8A46E5), 
-                                      Color(0xff52A4F9),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    )
-                                    :null,
-                                    border: task.isDone?
-                                    null:Border.all(
-                                   color: Colors.grey[400]!, 
-                                   width: 2,
-            ),
-                                ),
-                                child: task.isDone
-                                ? const Icon(
-                                  Icons.check,
-                                  color:Colors.white,
-                                  size:18,
-                                )
-                                :null,
-                              ),
-                              ),
-                              SizedBox(width: 12,),
-                              
-                               Expanded(
-                                child: Text(
-                                  task.title,
-                                style:TextStyle(
-                                  fontFamily: 'Rubik',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  decoration: task.isDone
-                                  ?TextDecoration.lineThrough
-                                  :TextDecoration.none,
-                                  decorationColor: authProvider.isDarkMode ? Colors.white : Colors.black,
-                                  decorationThickness: 2.0,
-                                  color:authProvider.isDarkMode ? Colors.white : Colors.black,
-                                 
-                                ),),
-                              
-                                ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      authProvider.deleteTask(index);
-                                      
-                                    },
-                                    child: Icon(
-                                    Icons.close,
-                                    color: Colors.grey[400],
-                                     size: 20,
-                                       ),
-                                  ),
-                            ],
-                          ),
-                          
-                          );
+                          return TodoTile(task: task,
+                           index: index, 
+                           authProvider: authProvider);
                           },
                           
                           
@@ -309,105 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 16,),
             
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
-                    padding: const EdgeInsets.all(8),
-                    height: 68,
-                    width: 360,
-                    decoration: BoxDecoration(
-                      //color:Colors.white,
-                      color: authProvider.isDarkMode ? AppColors.bigDarkBox : Colors.white,
-                      
-                    ),
-                    child: Row(
-                      children: [
-            
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: ()=> authProvider.changeFilter('All'),
-                            child: Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color:authProvider.currentFilter=='All'
-                                ?AppColors.blueColor
-                                //:AppColors.grey2Color,
-                                :authProvider.isDarkMode?Colors.black:AppColors.grey2Color,
-                                borderRadius: BorderRadius.circular(8),
-                                
-                                        
-                              ),
-                              child: Center(
-                                child:Text('All',style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 14,
-                                  color: (authProvider.currentFilter=='All'||authProvider.isDarkMode)
-                                  ?Colors.white
-                                  :Colors.black,
-
-                                  fontWeight: FontWeight.w500,
-                                ),),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8,),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: ()=>authProvider.changeFilter('Active'),
-                            child: Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color:authProvider.currentFilter=='Active'
-                                ?AppColors.blueColor
-                               // :AppColors.grey2Color,
-                                :authProvider.isDarkMode?Colors.black:AppColors.grey2Color,
-
-                                borderRadius: BorderRadius.circular(8),
-                                        
-                              ),
-                              child: Center(
-                                child:Text('Active',style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 14,
-                                 color: (authProvider.currentFilter=='Active'||authProvider.isDarkMode)
-                                  ?Colors.white
-                                  :Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                ),),
-                              ),
-                            ),
-                          ),
-                          ),
-                           SizedBox(width: 8,),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () => authProvider.changeFilter('Completed'),
-                            child: Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color:authProvider.currentFilter=='Completed'
-                                ?AppColors.blueColor
-                                //:AppColors.grey2Color,
-                                 :authProvider.isDarkMode?Colors.black:AppColors.grey2Color,
-                                borderRadius: BorderRadius.circular(8),
-                                        
-                              ),
-                              child: Center(
-                                child:Text('Completed',style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 14,
-                                 color: (authProvider.currentFilter=='Completed'||authProvider.isDarkMode)
-                                  ?Colors.white
-                                  :Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                ),),
-                              ),
-                            ),
-                          ),
-                          )
-                      ],
-                    ),
-                  )
+                 FilterTabs(authProvider: authProvider),
                 ],
               )
             );
