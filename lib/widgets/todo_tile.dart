@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_11/provider/auth_provider.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
 
 class TodoTile extends StatelessWidget {
   final dynamic task;
   final int index;
-  final AuthProvider authProvider;
- 
+  final TaskProvider taskProvider;
+  
+
 
   const TodoTile({
     super.key,
     required this.task,
     required this.index,
-    required this.authProvider,
+    required this.taskProvider,
   });
 
   @override
@@ -23,7 +24,8 @@ class TodoTile extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  authProvider.toggleTaskStatus(index);
+                                  //final originalIndex=taskProvider.tasks.indexOf(task);
+                                  taskProvider.toggleTaskStatus(task);
                                 
                                 },
                               
@@ -69,16 +71,17 @@ class TodoTile extends StatelessWidget {
                                   decoration: task.isDone
                                   ?TextDecoration.lineThrough
                                   :TextDecoration.none,
-                                  decorationColor: authProvider.isDarkMode ? Colors.white : Colors.black,
+                                  decorationColor: taskProvider.isDarkMode ? Colors.white : Colors.black,
                                   decorationThickness: 2.0,
-                                  color:authProvider.isDarkMode ? Colors.white : Colors.black,
+                                  color:taskProvider.isDarkMode ? Colors.white : Colors.black,
                                  
                                 ),),
                               
                                 ),
                                   GestureDetector(
                                     onTap: () {
-                                      authProvider.deleteTask(index);
+                                      //final originalIndex=taskProvider.tasks.indexOf(task);
+                                      taskProvider.deleteTask(task);
                                       
                                     },
                                     child: Icon(

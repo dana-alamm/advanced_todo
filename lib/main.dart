@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_11/provider/auth_provider.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
+import 'package:flutter_application_11/core/services/prefs_services.dart';
 import 'package:flutter_application_11/screens/home_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await PrefsServices.init();
   runApp(
     ChangeNotifierProvider(
-      create: (context)=>AuthProvider(),
+      create: (context)=>TaskProvider(),
       child:const MyApp(),
       )
   );

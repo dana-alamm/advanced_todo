@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_11/provider/auth_provider.dart';
-import 'package:flutter_application_11/theme/app_colors.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
+import 'package:flutter_application_11/core/theme/app_colors.dart';
 
 class FilterTabs extends StatelessWidget {
-  final AuthProvider authProvider;
+  final TaskProvider authProvider;
   const FilterTabs({super.key, required this.authProvider});
 
   @override

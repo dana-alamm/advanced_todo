@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_11/provider/auth_provider.dart';
-import 'package:flutter_application_11/theme/app_colors.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
+import 'package:flutter_application_11/core/theme/app_colors.dart';
 import 'package:flutter_application_11/widgets/filter_tabs.dart';
 import 'package:flutter_application_11/widgets/todo_tile.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     
-    final authProvider=Provider.of<AuthProvider>(context);
+    final authProvider=Provider.of<TaskProvider>(context);
     return Scaffold(
   // backgroundColor: AppColors.lightBackGround,
   backgroundColor: authProvider.isDarkMode?AppColors.darkMode:AppColors.lightBackGround,
@@ -93,8 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
                controller: _taskController,
                style: TextStyle(
                 color: authProvider.isDarkMode ? Colors.white : Colors.black,
-    fontFamily: 'Roboto',
-    fontSize: 16,
+               fontFamily: 'Roboto',
+                fontSize: 16,
                ),
               decoration: InputDecoration(
                 
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color:authProvider.isDarkMode?Colors.white:AppColors.blueColor,
                     onPressed: () {
                    if(_taskController.text.trim().isNotEmpty){
-                    Provider.of<AuthProvider>(context,listen: false)
+                    Provider.of<TaskProvider>(context,listen: false)
                     .addTask(_taskController.text);
                     _taskController.clear();
                    }
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(height: 60,),
         
         Expanded(
-          child:Consumer<AuthProvider>(
+          child:Consumer<TaskProvider>(
             builder: (context, authProvider, child) { 
               
           
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontFamily: 'Rubik',
                     fontSize: 13,
-                    color: authProvider.isDarkMode ? Colors.white54 : const Color.fromARGB(92, 0, 0, 0),
+                    color: authProvider.isDarkMode ? Colors.white54 : const Color.fromARGB(92, 236, 172, 172),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -196,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             final task=authProvider.filteredTasks[index];
                           return TodoTile(task: task,
                            index: index, 
-                           authProvider: authProvider);
+                           taskProvider: authProvider);
                           },
                           
                           
