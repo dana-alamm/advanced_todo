@@ -8,6 +8,16 @@ class TaskProvider  extends ChangeNotifier{
   List<TaskModel>_tasks=[
    
   ];
+
+  final List<String>_categories=['All','Work','Personal','Shopping','Study','Sports','cooking'];
+   String _selectedCategory='All';
+   List<String> get categories=>_categories;
+   String get selectedCategory=>_selectedCategory;
+
+   void selectCategory(String categoryName){
+   _selectedCategory=categoryName;
+   notifyListeners();
+  }
   bool _isDarkMode=false;
   String _currentFilter='All';
 

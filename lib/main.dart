@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
+import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/services/prefs_services.dart';
 import 'package:flutter_application_11/screens/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -9,10 +10,13 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await PrefsServices.init();
   runApp(
-    ChangeNotifierProvider(
-      create: (context)=>TaskProvider(),
-      child:const MyApp(),
-      )
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_)=>TaskProvider()),
+      ChangeNotifierProvider(create: (_)=>ThemeProvider()),
+    ],
+    child: const MyApp(),
+  )
   );
 }
 
