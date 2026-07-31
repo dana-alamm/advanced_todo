@@ -259,8 +259,10 @@
  import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
  import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
 import 'package:flutter_application_11/widgets/category_tabs.dart';
  import 'package:flutter_application_11/widgets/filter_tabs.dart';
+import 'package:flutter_application_11/widgets/new_task_bottom_sheet.dart';
  import 'package:flutter_application_11/widgets/todo_tile.dart';
  import 'package:provider/provider.dart';
 
@@ -280,6 +282,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
     final themeProvider=Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor:themeProvider.backgroundColor,
+      bottomNavigationBar: const AppBottomNavigation(),
      body: SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -360,11 +363,79 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
           ),
           const FilterTabs(),
           const CategoryTabs(),
+
+          SizedBox(height: 12,),
+
+          Expanded(
+            child: Consumer<TaskProvider>(
+              builder: (context,taskProvider,child){
+                if(taskProvider.filteredTasks.isEmpty){
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.assignment_turned_in_outlined,size:64,
+                        color:Colors.grey.shade400),
+                        const SizedBox(height: 16,),
+                        Text(
+                          'No tasks found!',
+                          style:TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color:themeProvider.textColor.withOpacity(0.6),
+                          )
+                        )
+                      ],
+                    ),
+                  );
+                }
+                return ListView.builder(
+                  padding:  const EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: taskProvider.filteredTasks.length,
+                  itemBuilder: (context,index){
+                    final task=taskProvider.filteredTasks[index];
+
+                    return TodoTile(
+                      key:ValueKey(task.id),// for no problems in animation
+                      task: task,
+                     onStateChanged: ()=>taskProvider.toggleTaskStatus(task), 
+                     onDelete: ()=>taskProvider.deleteTask(task),
+                      onEdit: (){},
+                     onPinToggled: ()=>taskProvider.togglePinTask(task.id)
+                     );
+                  }
+                  );
+              }
+              )
+            ),
+        
         ],
        
-        
-      )
+       
       ),
+    
+      
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            //backgroundColor: Colors.transparent,
+             builder: (context){
+              return const NewTaskBottomSheet();
+             });
+        },
+        backgroundColor: AppColors.purple,
+        foregroundColor: Colors.white,
+        shape: const CircleBorder(),
+        elevation: 4,
+        hoverElevation: 6,
+        child: Icon(
+          Icons.add,
+          size:28,
+        ),
+        ),
     );
    }
  }
