@@ -104,7 +104,10 @@ class _TodoTileState extends State<TodoTile> {
                         ),
                         const SizedBox(width: 6,),
 
-                        Row(
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 6,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Container(
                               padding:  EdgeInsets.symmetric(horizontal: 8,vertical: 4),
