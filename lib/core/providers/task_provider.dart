@@ -11,6 +11,7 @@ class TaskProvider  extends ChangeNotifier{
 
   final List<String>_categories=['All','Work','Personal','Shopping','Study','Sports','cooking'];
    String _selectedCategory='All';
+
    List<String> get categories=>_categories;
    String get selectedCategory=>_selectedCategory;
 
@@ -35,6 +36,7 @@ class TaskProvider  extends ChangeNotifier{
   if(tasksData!=null && tasksData is String){
     final List<dynamic>decodedList=jsonDecode(tasksData);
     _tasks=decodedList.map((item)=>TaskModel.fromJson(item)).toList();
+   
     notifyListeners();
   }
   }
@@ -104,6 +106,30 @@ void addTask({
      notifyListeners();
      _saveToStorage();
   }
+
+  void updateTask({
+  required String id,
+    required String newTitle,
+    required String newNotes,
+    required String newPriority,
+    required String newCategory,
+    required DateTime newDueDate,
+  }){
+    final index = _tasks.indexWhere((task) => task.id == id);
+    if (index != -1) {
+      _tasks[index] = _tasks[index].copyWith(
+        title: newTitle,
+        notes: newNotes,
+        priority: newPriority,
+        category: newCategory,
+        dueDate: newDueDate,
+      );
+      notifyListeners();
+      _saveToStorage();
+    }
+  }
+  
+
   void clearCompletedTasks(){
     _tasks.removeWhere((task)=>task.isDone);
     notifyListeners();
@@ -126,6 +152,7 @@ void addTask({
      return 0;
       });
       notifyListeners();
+      _saveToStorage();
     }
   }
 } 

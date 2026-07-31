@@ -1,68 +1,5 @@
 
-// // class TaskModel{
-// //   String title;
-// //   bool isDone;
 
-// //   TaskModel({
-// //     required this.title,
-// //     this.isDone=false,
-// //   });
-
-// //   void toggleDone(){
-// //     isDone=!isDone;
-// //   }
-// //   factory TaskModel.fromJson(Map<String, dynamic> json) {
-// //     return TaskModel(
-// //       title: json['title'],
-// //       isDone: json['isDone'] ?? false, 
-// //     );
-// //   }
-// //   Map<String, dynamic> toJson() {
-// //     return {
-// //       'title': title,
-// //       'isDone': isDone,
-// //     };
-// //   }
-// // }
-// class TaskModel {
-//   String title;
-//   bool isDone;
-
-//   TaskModel({
-//     required this.title,
-//     this.isDone = false,
-//   });
-
-//   void toggleDone() {
-//     isDone = !isDone;
-//   }
-
-//   factory TaskModel.fromJson(Map<String, dynamic> json) {
-//     return TaskModel(
-//       title: json['title'],
-//       isDone : json['isDone'] ?? false, 
-//     );
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'title': title,
-//       'isDone': isDone,
-//     };
-//   }
-
-  
-//   @override
-//   bool operator ==(Object other) =>
-//       identical(this, other) ||
-//       other is TaskModel &&
-//           runtimeType == other.runtimeType &&
-//           title == other.title &&
-//           isDone == other.isDone;
-
-//   @override
-//   int get hashCode => title.hashCode ^ isDone.hashCode;
-// }
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -75,6 +12,7 @@ class TaskModel {
   final DateTime dueDate;
   bool isDone;
   final bool isPinned;
+
   TaskModel({
  required this.id,
  required this.title,
@@ -96,7 +34,7 @@ class TaskModel {
        category: json['category']??'Personal',
         dueDate: json['dueDate']!=null?DateTime.parse(json['dueDate']):DateTime.now(),
         isDone: json['isDone']??false,
-        isPinned: json['isPinnes']??false,
+        isPinned: json['isPinned']??false,
         );
   }
   Map<String,dynamic>toJson(){
@@ -148,6 +86,7 @@ TaskModel copyWith({
     if(priority.toLowerCase()=='medium')return Colors.amber.shade50;
     return Colors.brown.shade50;
   }//background color
+  
 Color get priorityBorderColor {
     if (priority.toLowerCase() == 'high') return Colors.red.shade100;
     if (priority.toLowerCase() == 'medium') return Colors.amber.shade200;
