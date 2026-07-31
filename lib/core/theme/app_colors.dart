@@ -9,5 +9,7 @@ class AppColors {
   static const Color bigDarkBox=Color(0xff25273D);
   static const Color grey3Color=Color(0xff90A1B9);
   static const Color purple=Color(0xff7008E7);
+  static const Color borderPurple=Color(0xFFE2D9F3);
   static const Color textGrey=Color(0xff62748E);
+  static const Color borderGrey=Color(0xFFE2E8F0);
 }

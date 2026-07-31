@@ -363,6 +363,51 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
           ),
           const FilterTabs(),
           const CategoryTabs(),
+
+          SizedBox(height: 12,),
+
+          Expanded(
+            child: Consumer<TaskProvider>(
+              builder: (context,taskProvider,child){
+                if(taskProvider.filteredTasks.isEmpty){
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.assignment_turned_in_outlined,size:64,
+                        color:Colors.grey.shade400),
+                        const SizedBox(height: 16,),
+                        Text(
+                          'No tasks found!',
+                          style:TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color:themeProvider.textColor.withOpacity(0.6),
+                          )
+                        )
+                      ],
+                    ),
+                  );
+                }
+                return ListView.builder(
+                  padding:  const EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: taskProvider.filteredTasks.length,
+                  itemBuilder: (context,index){
+                    final task=taskProvider.filteredTasks[index];
+
+                    return TodoTile(
+                      key:ValueKey(task.id),// for no problems in animation
+                      task: task,
+                     onStateChanged: ()=>taskProvider.toggleTaskStatus(task), 
+                     onDelete: ()=>taskProvider.deleteTask(task),
+                      onEdit: (){},
+                     onPinToggled: ()=>taskProvider.togglePinTask(task.id)
+                     );
+                  }
+                  );
+              }
+              )
+            ),
         
         ],
        

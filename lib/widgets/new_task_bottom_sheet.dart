@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/theme/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -102,7 +103,7 @@ class _NewTaskBottomSheetState extends State<NewTaskBottomSheet> {
                     fontFamily: 'Inter',
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color:themeprovider.textColor,
+                   // color:themeprovider.textColor,
                   ),
                     decoration: InputDecoration(
                       hintText: 'Add new task',
@@ -126,7 +127,7 @@ class _NewTaskBottomSheetState extends State<NewTaskBottomSheet> {
                     controller: _notesController,
                     maxLines: 3,
                     style: TextStyle(
-                      fontFamily: 'Inter', color: themeprovider.textColor
+                      fontFamily: 'Inter', 
                     ),
                     decoration: InputDecoration(
                       hintText: 'Add a note (optional)',
@@ -344,7 +345,7 @@ class _NewTaskBottomSheetState extends State<NewTaskBottomSheet> {
                                 fontFamily: 'Inter',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color:themeprovider.textColor,
+                               // color:themeprovider.textColor,
                               ),
                               decoration: InputDecoration(
                               hintText: 'Select a date',
@@ -370,7 +371,20 @@ class _NewTaskBottomSheetState extends State<NewTaskBottomSheet> {
                               height: 52,
                               child: ElevatedButton(
                                 onPressed: (){
-                                  Navigator.pop(context);
+                                  if(_taskController.text.trim().isNotEmpty){
+                                    Provider.of<TaskProvider>(context,listen: false).addTask(
+                                      title: _taskController.text.trim(),
+                                      notes: _notesController.text.trim(),
+                                      priority: selectedPriority,
+                                       category: selectedCategory,
+                                        dueDate: _selectedDate ??DateTime.now(),
+                                        );
+                                      Navigator.pop(context);
+                                  }else{
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Please enter a task title!')),
+                                  );
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.purple,

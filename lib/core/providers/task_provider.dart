@@ -62,14 +62,36 @@ class TaskProvider  extends ChangeNotifier{
     notifyListeners();
   }
 
-  void addTask(String title){
-    if(title.trim().isNotEmpty){
-      _tasks.add(TaskModel(title: title));
+  // void addTask(String title){
+  //   if(title.trim().isNotEmpty){
+  //     _tasks.add(TaskModel(title: title, id: '', priority: '', category: '', dueDate: null));
+  //     notifyListeners();
+  //     _saveToStorage();
+  //   }
+void addTask({
+    required String title,
+    String notes = '',
+    required String priority,
+    required String category,
+    required DateTime dueDate,
+  }) {
+   final newTask=
+        TaskModel(
+          id: DateTime.now().millisecondsSinceEpoch.toString(), 
+          title: title,
+          notes: notes,
+          priority: priority,
+          category: category,
+          dueDate: dueDate,
+          isDone: false,
+        
+      );
+      _tasks.add(newTask);
       notifyListeners();
       _saveToStorage();
     }
-
-  }
+  
+  
   void toggleTaskStatus( TaskModel task){
      
      task.toggleDone();
@@ -91,5 +113,19 @@ class TaskProvider  extends ChangeNotifier{
     _currentFilter=newFilter;
     notifyListeners();
     _saveToStorage();
+  }
+
+  void togglePinTask(String id){
+    final index=_tasks.indexWhere((task)=>task.id==id);
+    if(index !=-1){
+      _tasks[index] = _tasks[index].copyWith(isPinned: !_tasks[index].isPinned);
+
+      _tasks.sort((a,b){
+     if(a.isPinned && !b.isPinned)return -1;
+     if(!a.isPinned && b.isPinned)return 1;
+     return 0;
+      });
+      notifyListeners();
+    }
   }
 } 
