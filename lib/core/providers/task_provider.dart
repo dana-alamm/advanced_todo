@@ -8,7 +8,7 @@ class TaskProvider  extends ChangeNotifier{
   List<TaskModel>_tasks=[
    
   ];
-
+ 
   final List<String>_categories=['All','Work','Personal','Shopping','Study','Sports','cooking'];
    String _selectedCategory='All';
 
@@ -25,6 +25,7 @@ class TaskProvider  extends ChangeNotifier{
   List<TaskModel>get tasks=>_tasks;
   bool get isDarkMode=>_isDarkMode;
   String get currentFilter=>_currentFilter;
+  int get activeTasksCount=>_tasks.where((task)=>!task.isDone).length;
 
   TaskProvider(){
     loadTasksFromStorage();
