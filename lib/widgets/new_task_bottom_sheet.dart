@@ -293,7 +293,7 @@ class _NewTaskBottomSheetState extends State<NewTaskBottomSheet> {
                            Row(
                             children: [
                            CategoryButton(
-                        label: 'Soprts', 
+                        label: 'Sports', 
                         isSelected: selectedCategory=='Sports', 
                         selectedBgColor: AppColors.purple,
                          selectedTextColor: Colors.white, 

@@ -25,6 +25,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
   @override
    Widget build(BuildContext context) {
     final themeProvider=Provider.of<ThemeProvider>(context);
+    final activeCount=Provider.of<TaskProvider>(context).activeTasksCount;
     return Scaffold(
       backgroundColor:themeProvider.backgroundColor,
       bottomNavigationBar: const AppBottomNavigation(),
@@ -39,6 +40,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
               children: [
                Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'My Tasks',
@@ -109,8 +111,28 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
           const FilterTabs(),
           const CategoryTabs(),
 
-          SizedBox(height: 12,),
+          
+          const SizedBox(height: 5,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Active . $activeCount',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: themeProvider.isDarkMode
+                  ? Colors.white
+                  :Color(0xff52525C),
+                ),
+              ),
+            ),
+            ),
 
+          SizedBox(height: 12,),
+          
           Expanded(
             child: Consumer<TaskProvider>(
               builder: (context,taskProvider,child){

@@ -25,6 +25,35 @@ class TodoTile extends StatefulWidget {
 
 class _TodoTileState extends State<TodoTile> {
   bool _isExpanded=false;
+  bool _isEditing=false;
+  late TextEditingController _taskController;
+  late TextEditingController _notesController;
+  late TextEditingController _dateController;
+  DateTime? _selectedDate;
+  late String _selectedProirity;
+  late String _selecedCategory;
+  
+ 
+ @override
+ void initState(){
+  super.initState();
+  _taskController=TextEditingController(text: widget.task.title);
+  _notesController=TextEditingController(text: widget.task.notes);
+  _dateController=TextEditingController(
+    text:"${widget.task.dueDate.year}-${widget.task.dueDate.month.toString().padLeft(2, '0')}-${widget.task.dueDate.day.toString().padLeft(2, '0')}"
+  );
+  _selectedProirity=widget.task.priority;
+  _selecedCategory=widget.task.category;
+  _selectedDate=widget.task.dueDate;
+
+ }
+ @override
+ void dispose(){
+  _taskController.dispose();
+  _notesController.dispose();
+  _dateController.dispose();
+  super.dispose();
+ }
  
   @override
   Widget build(BuildContext context) {
@@ -271,6 +300,63 @@ class _TodoTileState extends State<TodoTile> {
           
         
       );
+      
+  }
+
+  Widget buildEditMode(){
+    return Padding(
+      padding:const EdgeInsets.all(12.0),
+      child:Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            controller: _taskController,
+            style: const TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 14,
+              fontWeight: FontWeight.w500
+            
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color(0xFFF8FAFC),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+            
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+            ),
+          ),
+          ),
+          const SizedBox(height: 10,),
+          TextField(
+            controller: _notesController,
+            decoration: InputDecoration(
+              labelText: 'Notes',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+              ),
+            ),
+           
+          ),
+           const SizedBox(height: 12,),
+         
+            ],
+           )
+
+        
+    
+      );
+  
       
   }
   
