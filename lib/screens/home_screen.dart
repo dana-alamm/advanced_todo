@@ -8,6 +8,7 @@ import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
 import 'package:flutter_application_11/widgets/category_tabs.dart';
  import 'package:flutter_application_11/widgets/filter_tabs.dart';
 import 'package:flutter_application_11/widgets/new_task_bottom_sheet.dart';
+import 'package:flutter_application_11/widgets/task_popup_menu.dart';
  import 'package:flutter_application_11/widgets/todo_tile.dart';
  import 'package:provider/provider.dart';
 
@@ -28,7 +29,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
     final activeCount=Provider.of<TaskProvider>(context).activeTasksCount;
     return Scaffold(
       backgroundColor:themeProvider.backgroundColor,
-      bottomNavigationBar: const AppBottomNavigation(),
+     bottomNavigationBar: const AppBottomNavigation(currentIndex: 0,),
      body: SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -94,13 +95,14 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                               : Colors.black.withValues(alpha: 0.05),
                         shape: BoxShape.circle
                       ),
-                      child: GestureDetector(
-                        onTap: () {
-                          
-                        },
-                        child: Icon(Icons.playlist_add_check,
-                        color: themeProvider.textColor),
-                      ),
+                      // child: GestureDetector(
+                      //   onTap: () {
+                         
+                      //   },
+                      //   child: Icon(Icons.playlist_add_check,
+                      //   color: themeProvider.textColor),
+                      // ),
+                      child: const TaskPopupMenu(),
                     )
                   ],
                 )
@@ -111,7 +113,8 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
           const FilterTabs(),
           const CategoryTabs(),
 
-          
+   
+
           const SizedBox(height: 5,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 8),

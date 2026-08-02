@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/screens/home_screen.dart';
+import 'package:flutter_application_11/screens/search_screen.dart';
 import 'package:provider/provider.dart';
 
 class AppBottomNavigation extends StatefulWidget {
-  const AppBottomNavigation({super.key});
+  final int currentIndex;
+ 
+  const AppBottomNavigation({
+    super.key,
+   required this.currentIndex,
+  });
 
   @override
   State<AppBottomNavigation> createState() => _AppBottomNavigationState();
 }
 
 class _AppBottomNavigationState extends State<AppBottomNavigation> {
-  int _selectedIndex=0;
+  //int _selectedIndex=0;
   @override
   Widget build(BuildContext context) {
     final themeProvider=Provider.of<ThemeProvider>(context);
+    final currentIdx=widget.currentIndex;
     return Theme(
       data:Theme.of(context).copyWith(
         splashColor: Colors.transparent,
@@ -23,12 +31,25 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
       child: BottomNavigationBar(
       
          
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex=index;
-          });
+        currentIndex: currentIdx,
+        onTap: (index){
+         if(index==currentIdx) return;
+         
+         if(index==0){
+          Navigator.pushAndRemoveUntil(
+            context,
+             MaterialPageRoute(builder: (context)=>const HomeScreen()),
+            (Route)=>false);
+         }else if(index==1){
+          Navigator.pushAndRemoveUntil(
+            context,
+             MaterialPageRoute(builder: (context)=>const SearchScreen()),
+            (Route)=>false);
+         }
         },
+
+        
+        
         type: BottomNavigationBarType.fixed,
         backgroundColor: themeProvider.backgroundColor,
         selectedItemColor: AppColors.purple,
@@ -37,7 +58,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
         
         items:  [
           BottomNavigationBarItem(
-            icon: _selectedIndex==0
+            icon: currentIdx==0
             ? Container(
             padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
             decoration: BoxDecoration(
@@ -59,7 +80,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
             ),
            
            BottomNavigationBarItem(
-            icon: _selectedIndex==1
+            icon: currentIdx==1
             ?Container(
                 padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
             decoration: BoxDecoration(
@@ -79,7 +100,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
             label: 'Search',
             ),
             BottomNavigationBarItem(
-               icon: _selectedIndex==2
+               icon: currentIdx==2
             ?Container(
                 padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
             decoration: BoxDecoration(
@@ -102,7 +123,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
               ),
             
             BottomNavigationBarItem(
-               icon: _selectedIndex==3
+               icon: currentIdx==3
             ?Container(
                 padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
             decoration: BoxDecoration(
