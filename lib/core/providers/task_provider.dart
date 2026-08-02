@@ -26,6 +26,20 @@ class TaskProvider  extends ChangeNotifier{
   bool get isDarkMode=>_isDarkMode;
   String get currentFilter=>_currentFilter;
   int get activeTasksCount=>_tasks.where((task)=>!task.isDone).length;
+  int get doneTasksCount=>_tasks.where((task)=>task.isDone).length;
+
+
+  void markAllTasksComplete(){
+    for(var task in _tasks){
+      task.isDone=true;
+    }
+    notifyListeners();
+  }
+
+  void deleteDoneTasks(){
+    _tasks.removeWhere((task)=>task.isDone);
+    notifyListeners();
+  }
 
   TaskProvider(){
     loadTasksFromStorage();
