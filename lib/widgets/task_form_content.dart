@@ -165,7 +165,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                   unselectedTextColor: const Color(0xFFFF3B30), 
                   onTap: (){
                     setState(() {
-                      selectedPriority=='High';
+                      selectedPriority='High';
                     });
                   }),
                   const SizedBox(width: 10,),
@@ -180,7 +180,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
 
                    onTap: (){
                     setState(() {
-                      selectedPriority=='Medium';
+                      selectedPriority='Medium';
                     });
                    }),
                     const SizedBox(width: 10,),
@@ -224,7 +224,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                   unSelectedTextColor:Colors.black,
                    onTap: (){
                     setState(() {
-                      selectedCategory=='Work';
+                      selectedCategory='Work';
                     });
                    }),
                    SizedBox(width: 12,),
@@ -256,7 +256,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                  unSelectedTextColor: Colors.black, 
                  onTap: (){
                   setState(() {
-                    selectedCategory=='Shopping';
+                    selectedCategory='Shopping';
                   });
                  }),
                  SizedBox(width: 12,),
@@ -269,7 +269,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                    unSelectedTextColor: Colors.black, 
                    onTap: (){
                     setState(() {
-                      selectedCategory=='Study';
+                      selectedCategory='Study';
                     });
                    })
           ],

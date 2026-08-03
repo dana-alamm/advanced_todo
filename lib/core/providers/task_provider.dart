@@ -9,7 +9,7 @@ class TaskProvider  extends ChangeNotifier{
    
   ];
  
-  final List<String>_categories=['All','Work','Personal','Shopping','Study','Sports','cooking'];
+  final List<String>_categories=['All','Work','Personal','Shopping','Study','Sports','Cooking'];
    String _selectedCategory='All';
 
    List<String> get categories=>_categories;
@@ -59,9 +59,13 @@ class TaskProvider  extends ChangeNotifier{
   List<TaskModel> get filteredTasks{
     if(currentFilter=='Active'){
       return _tasks.where((task)=>!task.isDone).toList();
-    }else if(currentFilter=='Completed'){
+    }else if(currentFilter=='Done'){
       return _tasks.where((task)=>task.isDone).toList();
 
+    }
+    if (selectedCategory!='All'){
+      return _tasks.where(
+        (task)=>task.category.trim().toLowerCase()==_selectedCategory.trim().toLowerCase()).toList();
     }
     return _tasks;
   }
