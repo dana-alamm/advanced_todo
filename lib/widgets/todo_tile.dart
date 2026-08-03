@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/models/task_model.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/widgets/edit_task_screen.dart';
 import 'package:provider/provider.dart';
 
 class TodoTile extends StatefulWidget {
@@ -56,7 +57,7 @@ class _TodoTileState extends State<TodoTile> {
  }
  
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
      final themeProvider=Provider.of<ThemeProvider>(context);
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
@@ -263,7 +264,22 @@ class _TodoTileState extends State<TodoTile> {
 
                  // if(_isExpanded && widget.task.isDone)
                   IconButton(
-                    onPressed:widget.onEdit, 
+                    onPressed:()async{
+                      await Navigator.push(
+                        context, 
+                      MaterialPageRoute(
+                        builder: (context)=>EditTaskScreen(
+                          taskToEdit:{
+                            'id': widget.task.id,
+                           'title': widget.task.title,
+                           'notes': widget.task.notes, // أو discription حسب شو مسميتيه
+                           'priority': widget.task.priority,
+                           'category': widget.task.category,
+                          'dueDate': widget.task.dueDate,
+                          })
+                        )
+                        );
+                    },
                     icon: const Icon(Icons.edit_outlined
                     ),
                     color:Colors.blueGrey,
