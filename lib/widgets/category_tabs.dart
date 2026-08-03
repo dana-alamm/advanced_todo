@@ -45,7 +45,11 @@ class CategoryTabs extends StatelessWidget {
           selected: isActive,
           showCheckmark: false,
           onSelected: (selected){
+          if(selected){
             taskProvider.selectCategory(category);
+          }else{
+            taskProvider.selectCategory('All');
+          }
           },
           ),
         );
