@@ -240,9 +240,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
             context: context,
             isScrollControlled: true,
             //backgroundColor: Colors.transparent,
-             builder: (context){
-              return const NewTaskBottomSheet();
-             });
+             builder: (context)=>const NewTaskBottomSheet());
         },
         backgroundColor: AppColors.purple,
         foregroundColor: Colors.white,
