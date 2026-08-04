@@ -29,6 +29,15 @@ class TaskProvider  extends ChangeNotifier{
   int get doneTasksCount=>_tasks.where((task)=>task.isDone).length;
 
 
+  String _searchQuery='';
+  String get searchQuery => _searchQuery;
+
+  void updateSearchQuery(String query){
+    _searchQuery=query;
+    notifyListeners();
+  }
+
+
   void markAllTasksComplete(){
     for(var task in _tasks){
       task.isDone=true;
@@ -57,17 +66,24 @@ class TaskProvider  extends ChangeNotifier{
   }
 
   List<TaskModel> get filteredTasks{
-    if(currentFilter=='Active'){
-      return _tasks.where((task)=>!task.isDone).toList();
-    }else if(currentFilter=='Done'){
-      return _tasks.where((task)=>task.isDone).toList();
+   List <TaskModel> temptasks=List.from(_tasks);
 
-    }
-    if (selectedCategory!='All'){
-      return _tasks.where(
-        (task)=>task.category.trim().toLowerCase()==_selectedCategory.trim().toLowerCase()).toList();
-    }
-    return _tasks;
+   if(currentFilter =='Active'){
+    temptasks=temptasks.where((task)=>!task.isDone).toList();
+  }else if(currentFilter=='Done'){
+   temptasks=temptasks.where((task)=>task.isDone).toList();
+   }
+   if(selectedCategory !='All'&& selectedCategory.isNotEmpty){
+    temptasks=temptasks.where((task)=>task.category.trim().toLowerCase()==_selectedCategory.trim().toLowerCase()).toList();
+
+   }
+   if(_searchQuery.isNotEmpty){
+    temptasks=temptasks.where((task)=>task.title.toLowerCase().contains(_searchQuery.toLowerCase())||
+    task.notes.toLowerCase().contains(_searchQuery.toLowerCase())||
+    task.category.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+   }
+   return temptasks;
   }
 
   void _saveToStorage() {
