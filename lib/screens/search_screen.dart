@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
+import 'package:flutter_application_11/widgets/todo_tile.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -10,6 +12,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final themeProvider=Provider.of<ThemeProvider>(context);
+    final taskProvider=Provider.of<TaskProvider>(context);
     return Scaffold(
       backgroundColor: themeProvider.backgroundColor,
       bottomNavigationBar: const AppBottomNavigation(currentIndex: 1,),
@@ -36,6 +39,9 @@ class SearchScreen extends StatelessWidget {
               ),
               SizedBox(height: 16,),
               TextField(
+                onChanged: (value) {
+                  taskProvider.updateSearchQuery(value);
+                },
                style: TextStyle(
                 color:themeProvider.textColor,
                 fontFamily: 'Inter'
@@ -78,37 +84,82 @@ class SearchScreen extends StatelessWidget {
           height: 1,
           thickness: 1.5,
         ),
-        Expanded(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.search_rounded,
-                  size:80,
-                  color:themeProvider.isDarkMode
-                  ?Colors.white.withOpacity(0.3)
-                  :const Color(0xff94A3B8).withOpacity(0.6),
-                ),
-                const SizedBox(height: 16,),
-                Text(
-                  'Type to search your tasks',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color:themeProvider.isDarkMode
-                    ?Colors.white.withOpacity(0.4)
-                    :const Color(0xff94A3B8),
-                  ),
-                )
-              ],
-            ),
-          )
-          )
+    Expanded(
+      child:_buildSearchContent(context, taskProvider, themeProvider) ),
      ],
       )
       ),
     );
+  }
+  Widget _buildSearchContent(
+    BuildContext context,
+  TaskProvider taskProvider,
+  ThemeProvider themeProvider ){
+    if(taskProvider.searchQuery.isEmpty){
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.search_rounded,
+              size: 80,
+              color:themeProvider.isDarkMode
+             ? Colors.white.withOpacity(0.3)
+             : const Color(0xff94A3B8).withOpacity(0.6),
+            ),
+            const SizedBox(height: 16,),
+            Text(
+              'Type to search your tasks',
+              style: TextStyle(
+               
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: themeProvider.isDarkMode ? Colors.white.withOpacity(0.4) : const Color(0xff94A3B8),
+              ),
+              )
+        
+          ],
+        ),
+      );
+    }
+    if(taskProvider.filteredTasks.isEmpty){
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.search_off_rounded,
+              size: 80,
+              color:Colors.grey.shade400,
+
+            ),
+            const SizedBox(height: 16,),
+            Text(
+              'No results found!',
+              style:TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color:themeProvider.textColor.withOpacity(0.6),
+              )
+            )
+          ],
+        ),
+      );
+    }
+    return ListView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+      itemCount: taskProvider.filteredTasks.length,
+      itemBuilder: (context,index){
+        final task=taskProvider.filteredTasks[index];
+        return TodoTile(
+          key:ValueKey(task.id),
+          task: task,
+          onStateChanged: ()=>taskProvider.toggleTaskStatus(task),
+           onDelete: (){}, 
+           onEdit: (){},
+            onPinToggled:()=>taskProvider.togglePinTask(task.id),);
+      });
   }
 }
