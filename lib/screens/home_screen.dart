@@ -10,6 +10,7 @@ import 'package:flutter_application_11/widgets/category_tabs.dart';
 import 'package:flutter_application_11/widgets/new_task_bottom_sheet.dart';
 import 'package:flutter_application_11/widgets/task_popup_menu.dart';
  import 'package:flutter_application_11/widgets/todo_tile.dart';
+import 'package:intl/intl.dart';
  import 'package:provider/provider.dart';
 
 
@@ -56,7 +57,8 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    'Sun,Jul 19',
+                    //'Sun,Jul 19',
+                    DateFormat('EEE,MMM d').format(DateTime.now()),
                     style: TextStyle(
                       color:AppColors.grey3Color,
                       fontFamily: 'Inter',

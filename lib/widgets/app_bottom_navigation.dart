@@ -3,6 +3,8 @@ import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/theme/app_colors.dart';
 import 'package:flutter_application_11/screens/home_screen.dart';
 import 'package:flutter_application_11/screens/search_screen.dart';
+import 'package:flutter_application_11/screens/settings_screen.dart';
+import 'package:flutter_application_11/screens/stats_screen.dart';
 import 'package:provider/provider.dart';
 
 class AppBottomNavigation extends StatefulWidget {
@@ -45,6 +47,14 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
             context,
              MaterialPageRoute(builder: (context)=>const SearchScreen()),
             (Route)=>false);
+         }else if(index==2){
+          Navigator.pushAndRemoveUntil(context,
+           MaterialPageRoute(builder: (context)=>const StatsScreen()),
+            (Route)=>false);
+         }else if(index==3){
+          Navigator.pushAndRemoveUntil(context, 
+          MaterialPageRoute(builder: (context)=>const SettingsScreen()), 
+          (Route)=>false);
          }
         },
 
