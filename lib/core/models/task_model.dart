@@ -10,6 +10,7 @@ class TaskModel {
   final String priority;
   final String category;
   final DateTime dueDate;
+  final DateTime createdAt;
   bool isDone;
   final bool isPinned;
 
@@ -20,9 +21,10 @@ class TaskModel {
  required this.priority,
  required this.category,
  required this.dueDate,
+ DateTime?createdAt,
  this.isDone=false,
-  this.isPinned=false,
-  });
+  this.isPinned=false, 
+  }):createdAt=createdAt??DateTime.now();
   
 
   factory TaskModel.fromJson(Map<String,dynamic>json){
@@ -32,7 +34,12 @@ class TaskModel {
       notes: json['notes']??'',
       priority: json['priority']??'High',
        category: json['category']??'Personal',
+
         dueDate: json['dueDate']!=null?DateTime.parse(json['dueDate']):DateTime.now(),
+        createdAt: json['createdAt']!=null
+        ?DateTime.parse(json['dueDate'])
+        :DateTime.now(),
+
         isDone: json['isDone']??false,
         isPinned: json['isPinned']??false,
         );
@@ -45,6 +52,7 @@ class TaskModel {
       'priority':priority,
       'category':category,
       'dueDate':dueDate.toIso8601String(),
+      'createdAt':createdAt.toIso8601String(),
       'isDone':isDone,
       'isPinned':isPinned,
     };
@@ -60,6 +68,7 @@ TaskModel copyWith({
     String? priority,
     String? category,
     DateTime? dueDate,
+    DateTime?createdAt,
     bool? isDone,
     bool? isPinned,
   }) {

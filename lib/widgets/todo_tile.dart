@@ -3,6 +3,7 @@ import 'package:flutter_application_11/core/models/task_model.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/theme/app_colors.dart';
 import 'package:flutter_application_11/widgets/edit_task_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TodoTile extends StatefulWidget {
@@ -203,7 +204,8 @@ class _TodoTileState extends State<TodoTile> {
                                 const Icon(Icons.calendar_today_outlined,size:14,color:Colors.orange),
                                 SizedBox(width: 4,),
                                 Text(
-                          "${widget.task.dueDate.day}/${widget.task.dueDate.month}", 
+                         // "${widget.task.dueDate.day}/${widget.task.dueDate.month}", 
+                         formatDueDate(widget.task.dueDate),
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.orange,
@@ -232,8 +234,19 @@ class _TodoTileState extends State<TodoTile> {
                               : Colors.grey,
                             )
                           ),
-                          )
+                          
+                          ),
                         ],
+                          SizedBox(height: 6,),
+                          Text(
+                            formatTimeAgo(widget.task.createdAt),
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: Color(0xFF94A3B8),
+                             fontFamily: 'Inter',
+                            ),
+                          )
+                        
 
                     ],
                     
@@ -272,7 +285,7 @@ class _TodoTileState extends State<TodoTile> {
                           taskToEdit:{
                             'id': widget.task.id,
                            'title': widget.task.title,
-                           'notes': widget.task.notes, // أو discription حسب شو مسميتيه
+                           'notes': widget.task.notes, 
                            'priority': widget.task.priority,
                            'category': widget.task.category,
                           'dueDate': widget.task.dueDate,
@@ -375,5 +388,39 @@ class _TodoTileState extends State<TodoTile> {
   
       
   }
-  
+  String formatTimeAgo(DateTime dateTime){
+    final difference=DateTime.now().difference(dateTime);
+
+    if(difference.inMinutes<1){
+      return 'Just now';
+
+    }else if(difference.inMinutes<60){
+    return '${difference.inMinutes}m ago';
+
+    }else if(difference.inHours<24){
+      return '${difference.inHours}h ago';
+    }else{
+      return '${difference.inDays}d ago';
+    }
+  }
+  String formatDueDate(DateTime dueDate){
+    final now=DateTime.now();
+    final today=DateTime(now.year,now.month,now.day);
+    final targetDate=DateTime(dueDate.year,dueDate.month,dueDate.day);
+    final differenceInDays=targetDate.difference(today).inDays;
+
+    if(differenceInDays==0){
+      return 'Today';
+
+    }else if(differenceInDays==1){
+          return 'Tomorrow';
+    }else if(differenceInDays>1 && differenceInDays<=3){
+      return 'In $differenceInDays days';
+    }else if(differenceInDays<0){
+      return 'Overdue';
+
+    }else{
+      return DateFormat('MMM d').format(dueDate);
+    }
+  }
 }

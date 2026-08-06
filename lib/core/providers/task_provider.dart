@@ -27,7 +27,33 @@ class TaskProvider  extends ChangeNotifier{
   String get currentFilter=>_currentFilter;
   int get activeTasksCount=>_tasks.where((task)=>!task.isDone).length;
   int get doneTasksCount=>_tasks.where((task)=>task.isDone).length;
+  int get completedTasksCount=>_tasks.where((task)=>task.isDone).length;
+  int get remainingTaskCount=>_tasks.where((task)=>!task.isDone).length;
+  int get totalTaskCount=>_tasks.length;
+  int get pinnedTasksCount=>_tasks.where((task)=>task.isPinned).length;
 
+ int get dueSoonTasksCount {
+  final now = DateTime.now();
+  final today = DateTime(now.year, now.month, now.day);
+
+  return _tasks.where((task) {
+    if (task.isDone) return false;
+    
+    final targetDate = DateTime(task.dueDate.year, task.dueDate.month, task.dueDate.day);
+    final differenceInDays = targetDate.difference(today).inDays;
+
+    
+    return differenceInDays >= 0 && differenceInDays <= 3;
+  }).length;
+}
+
+int getTaskCountByPriority(String priority){
+  return _tasks.where((task)=>task.priority.toLowerCase()==priority.toLowerCase()).length;
+}
+
+int getTaskCountByCategory(String category) {
+  return _tasks.where((task) => task.category.toLowerCase() == category.toLowerCase()).length;
+}
 
   String _searchQuery='';
   String get searchQuery => _searchQuery;
