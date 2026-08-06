@@ -46,7 +46,7 @@ class StatsScreen extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xff90A1B9),
+                  color:AppColors.grey3Color,
                 ),
               )
                 ],
