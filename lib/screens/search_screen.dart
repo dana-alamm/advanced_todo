@@ -14,7 +14,7 @@ class SearchScreen extends StatelessWidget {
     final themeProvider=Provider.of<ThemeProvider>(context);
     final taskProvider=Provider.of<TaskProvider>(context);
     return Scaffold(
-      backgroundColor: themeProvider.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: const AppBottomNavigation(currentIndex: 1,),
     body: SafeArea(
       child: Column(
@@ -34,7 +34,7 @@ class SearchScreen extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 25,
                   fontWeight: FontWeight.w700,
-                  color:themeProvider.textColor
+                  color:Theme.of(context).textTheme.bodyMedium!.color
                 ),
               ),
               SizedBox(height: 16,),

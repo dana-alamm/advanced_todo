@@ -29,7 +29,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
     final themeProvider=Provider.of<ThemeProvider>(context);
     final activeCount=Provider.of<TaskProvider>(context).activeTasksCount;
     return Scaffold(
-      backgroundColor:themeProvider.backgroundColor,
+      backgroundColor:Theme.of(context).scaffoldBackgroundColor,
      bottomNavigationBar: const AppBottomNavigation(currentIndex: 0,),
      body: SafeArea(
       child: Column(
@@ -50,7 +50,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                       fontFamily: 'Inter',
                       fontSize: 25,
                       fontWeight: FontWeight.w700,
-                      color: themeProvider.textColor,
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
                      
 
                     ),
@@ -83,7 +83,8 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                           
                         
                         child: Icon(Icons.wb_sunny_outlined,
-                        color: themeProvider.textColor,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
+
                          ),
                         
                       )

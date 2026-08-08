@@ -38,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
     final themeProvider=Provider.of<ThemeProvider>(context);
     final taskProvider=Provider.of<TaskProvider>(context);
     return Scaffold(
-      backgroundColor: themeProvider.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: const AppBottomNavigation(currentIndex: 3),
       body: SafeArea(
         child: Column(
@@ -57,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,
                       fontSize: 25,
-                      color: themeProvider.textColor,
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
                     ),
                   ),
                   SizedBox(height: 6,),
