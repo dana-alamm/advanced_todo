@@ -14,7 +14,7 @@ class StatsScreen extends StatelessWidget {
     final themeProvider=Provider.of<ThemeProvider>(context);
     final taskProvider=Provider.of<TaskProvider>(context);
     return Scaffold(
-      backgroundColor: themeProvider.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar:const AppBottomNavigation(currentIndex: 2) ,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -35,7 +35,7 @@ class StatsScreen extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 25,
                   fontWeight: FontWeight.w700,
-                  color:themeProvider.textColor,
+                  color:Theme.of(context).textTheme.bodyMedium!.color,
                 ),
                 
               ),
@@ -56,6 +56,7 @@ class StatsScreen extends StatelessWidget {
                 color:themeProvider.isDarkMode
                 ?Colors.white10
                 :Colors.grey.shade200,
+                //color:Theme.of(context).dividerColor,
                 height: 1,
                 thickness: 1.5,
               ),
@@ -66,14 +67,16 @@ class StatsScreen extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: themeProvider.isDarkMode
-                        ?Colors.grey.shade900
-                        :Colors.white,
+                        // color: themeProvider.isDarkMode
+                        // ?Colors.grey.shade900
+                        // :Colors.white,
+                        color:Theme.of(context).colorScheme.surface,
                         borderRadius: BorderRadius.circular(20),
                         border:Border.all(
                           color: themeProvider.isDarkMode
                           ?Colors.white10
                           :const Color(0xFFE2E8F0),
+                          //color:Theme.of(context).dividerColor,
                           width: 1.5,
                         ),
                         boxShadow: [
@@ -113,7 +116,7 @@ class StatsScreen extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: themeProvider.textColor,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color,
                                   ),
                                 ),
                               
@@ -142,7 +145,7 @@ class StatsScreen extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Inter',
-                                    color:themeProvider.textColor,
+                                    color:Theme.of(context).textTheme.bodyMedium!.color,
                                   ),
                                   children: [
                                     TextSpan(
@@ -455,7 +458,7 @@ class StatsScreen extends StatelessWidget {
                                               style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                             color: themeProvider.textColor,
+                                             color: Theme.of(context).textTheme.bodyMedium!.color,
                                                ),
                                             ),
                                             const SizedBox(height: 2,),

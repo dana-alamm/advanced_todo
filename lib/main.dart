@@ -26,14 +26,17 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+   return Consumer<ThemeProvider>( 
+      builder: (context, themeProvider, child) { 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
+    theme: themeProvider.lightTheme,
+    darkTheme: themeProvider.darkTheme,
+    themeMode: themeProvider.isDarkMode?ThemeMode.dark:ThemeMode.light,
       home: const HomeScreen(),
+    );
+  }
     );
   }
 }
