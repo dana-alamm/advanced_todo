@@ -377,7 +377,8 @@ class StatsScreen extends StatelessWidget {
                                         label: 'Low', 
                                         count: taskProvider.getTaskCountByPriority('Low'), 
                                         total: taskProvider.tasks.length, 
-                                        color: const Color(0xFF34C759),
+                                        color: Colors.brown,
+                                      
                                         ),
 
                                 ],

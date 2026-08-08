@@ -86,7 +86,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
             child: const Icon(Icons.task_alt),
             )
             :const Icon(Icons.task_alt),
-      label: 'Tasks',
+            label: 'Tasks',
             ),
            
            BottomNavigationBarItem(

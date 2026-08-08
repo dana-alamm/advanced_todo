@@ -142,7 +142,7 @@ class _TodoTileState extends State<TodoTile> {
                           children: [
                             Container(
                               padding:  EdgeInsets.symmetric(horizontal: 8,vertical: 4),
-                            decoration: BoxDecoration(
+                              decoration: BoxDecoration(
                               color:widget.task.prioritBgColor,
                               border: Border.all(
                                 color:widget.task.priorityBorderColor,width: 1
