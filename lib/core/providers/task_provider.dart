@@ -25,6 +25,7 @@ class TaskProvider  extends ChangeNotifier{
   List<TaskModel>get tasks=>_tasks;
   bool get isDarkMode=>_isDarkMode;
   String get currentFilter=>_currentFilter;
+
   int get activeTasksCount=>_tasks.where((task)=>!task.isDone).length;
   int get doneTasksCount=>_tasks.where((task)=>task.isDone).length;
   int get completedTasksCount=>_tasks.where((task)=>task.isDone).length;
@@ -92,7 +93,7 @@ int getTaskCountByCategory(String category) {
   }
 
   List<TaskModel> get filteredTasks{
-   List <TaskModel> temptasks=List.from(_tasks);
+   List <TaskModel> temptasks=List.from(_tasks);//another copy of the original list
 
    if(currentFilter =='Active'){
     temptasks=temptasks.where((task)=>!task.isDone).toList();
@@ -170,11 +171,11 @@ void addTask({
 
   void updateTask({
   required String id,
-    required String newTitle,
-    required String newNotes,
-    required String newPriority,
-    required String newCategory,
-    required DateTime newDueDate,
+  required String newTitle,
+  required String newNotes,
+  required String newPriority,
+  required String newCategory,
+  required DateTime newDueDate,
   }){
     final index = _tasks.indexWhere((task) => task.id == id);
     if (index != -1) {

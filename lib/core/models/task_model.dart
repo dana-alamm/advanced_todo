@@ -23,7 +23,7 @@ class TaskModel {
  required this.dueDate,
  DateTime?createdAt,
  this.isDone=false,
-  this.isPinned=false, 
+ this.isPinned=false, 
   }):createdAt=createdAt??DateTime.now();
   
 
