@@ -29,7 +29,8 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
    // final themeProvider=Provider.of<ThemeProvider>(context);
    final theme=Theme.of(context);
    final isDarkMode=theme.brightness==Brightness.dark;
-    final activeCount=Provider.of<TaskProvider>(context).activeTasksCount;
+    final taskProvider=Provider.of<TaskProvider>(context).activeTasksCount;
+    
     return Scaffold(
       backgroundColor:Theme.of(context).scaffoldBackgroundColor,
      bottomNavigationBar: const AppBottomNavigation(currentIndex: 0,),
@@ -126,7 +127,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Active . $activeCount',
+                'Active . $taskProvider',
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 15,
@@ -165,14 +166,19 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                     ),
                   );
                 }
-                return ListView.builder(
+                return ReorderableListView.builder(
                   padding:  const EdgeInsets.symmetric(horizontal: 24),
+                  buildDefaultDragHandles: false,
                   itemCount: taskProvider.filteredTasks.length,
+                  onReorder: (oldIndex,newIndex){
+                  taskProvider.reorderTasks(oldIndex, newIndex);
+                  },
                   itemBuilder: (context,index){
                     final task=taskProvider.filteredTasks[index];
 
                     return TodoTile(
                       key:ValueKey(task.id),// for no problems in animation
+                      index: index,
                       task: task,
                      onStateChanged: ()=>taskProvider.toggleTaskStatus(task), 
                       onPinToggled: ()=>taskProvider.togglePinTask(task.id), onEdit: () {  },

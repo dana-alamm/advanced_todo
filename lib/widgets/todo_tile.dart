@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 class TodoTile extends StatefulWidget {
   final TaskModel task;
+  final int index;
   final VoidCallback onStateChanged;
   final VoidCallback onDelete;
   final VoidCallback onEdit;
@@ -18,7 +19,8 @@ class TodoTile extends StatefulWidget {
    required this.onStateChanged,
    required this.onDelete,
    required this.onEdit,
-    required this.onPinToggled
+    required this.onPinToggled,
+     required this.index
       });
 
   @override
@@ -93,11 +95,15 @@ class _TodoTileState extends State<TodoTile> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.drag_indicator,
-                color:Colors.grey.shade400,
-                size: 20,
-              ),
+              ReorderableDragStartListener(
+                index: widget.index,
+                child: Icon(
+                  Icons.drag_indicator,
+                  color: Colors.grey.shade400,
+                  size:20,
+                  ),
+                   ),
+             
               const SizedBox(width: 8,),
                GestureDetector(
                 onTap:widget.onStateChanged,

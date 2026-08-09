@@ -15,6 +15,7 @@ class SearchScreen extends StatelessWidget {
     final theme=Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
     final taskProvider=Provider.of<TaskProvider>(context);
+    final int index;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: const AppBottomNavigation(currentIndex: 1,),
@@ -162,7 +163,8 @@ class SearchScreen extends StatelessWidget {
           onStateChanged: ()=>taskProvider.toggleTaskStatus(task),
            onDelete: (){}, 
            onEdit: (){},
-            onPinToggled:()=>taskProvider.togglePinTask(task.id),);
+            onPinToggled:()=>taskProvider.togglePinTask(task.id),
+             index: index,);
       });
   }
 }
