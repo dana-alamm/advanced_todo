@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:flutter_application_11/screens/home_screen.dart';
@@ -36,6 +37,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
         currentIndex: currentIdx,
         onTap: (index){
          if(index==currentIdx) return;
+        Provider.of<TaskProvider>(context, listen: false).updateSearchQuery('');
          
          if(index==0){
           Navigator.pushAndRemoveUntil(
@@ -87,6 +89,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
             )
             :const Icon(Icons.task_alt),
             label: 'Tasks',
+            
             ),
            
            BottomNavigationBarItem(

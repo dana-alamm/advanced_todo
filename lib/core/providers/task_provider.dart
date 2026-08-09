@@ -61,7 +61,11 @@ int getTaskCountByCategory(String category) {
 
   void updateSearchQuery(String query){
     _searchQuery=query;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
     notifyListeners();
+  });
+    
   }
 
 
@@ -110,7 +114,7 @@ int getTaskCountByCategory(String category) {
     task.category.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
 
    }
-   tasks.sort((a,b){
+   temptasks.sort((a,b){
     if(a.isPinned && !b.isPinned)return -1;
     if(!a.isPinned && b.isPinned)return 1;
     return 0;
