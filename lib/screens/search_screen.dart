@@ -5,9 +5,38 @@ import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
 import 'package:flutter_application_11/widgets/todo_tile.dart';
 import 'package:provider/provider.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
-   
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+ final TextEditingController _searchController=TextEditingController();
+
+//  @override
+//  void initState(){
+//   super.initState();
+//   WidgetsBinding.instance.addPostFrameCallback((_){
+//     if(mounted){
+//       Provider.of<TaskProvider>(context,listen: false).updateSearchQuery('');
+//     }
+//   });
+//  }
+
+//  @override
+//  void deactivate(){
+//   Provider.of<TaskProvider>(context,listen: false).updateSearchQuery('');
+//   super.deactivate();
+//  }
+
+//  @override
+//   void dispose() {
+//     _searchController.dispose();
+//     super.dispose();
+//   }
+
   @override
   Widget build(BuildContext context) {
     
@@ -93,6 +122,7 @@ class SearchScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildSearchContent(
     BuildContext context,
   TaskProvider taskProvider,
