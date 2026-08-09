@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/models/task_model.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:flutter_application_11/widgets/edit_task_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +59,9 @@ class _TodoTileState extends State<TodoTile> {
  
   @override
   Widget build(BuildContext context)  {
-     final themeProvider=Provider.of<ThemeProvider>(context);
+     //final themeProvider=Provider.of<ThemeProvider>(context);
+     final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
@@ -67,7 +69,7 @@ class _TodoTileState extends State<TodoTile> {
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: themeProvider.backgroundColor,
+        color: theme.cardColor,
         border: BoxBorder.all(
           color:widget.task.isPinned
           ? AppColors.borderPurple
@@ -77,9 +79,9 @@ class _TodoTileState extends State<TodoTile> {
         ),
         boxShadow: [
           BoxShadow(
-            color:widget.task.isPinned
-            ?Colors.purple.withOpacity(0.04)
-            :Colors.black.withOpacity(0.01),
+          color: widget.task.isPinned
+    ? Colors.purple.withValues(alpha: 0.04)
+    : Colors.black.withValues(alpha: 0.01),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )
@@ -128,9 +130,9 @@ class _TodoTileState extends State<TodoTile> {
                           fontWeight: FontWeight.w600,
                         
                           decoration: widget.task.isDone?TextDecoration.lineThrough:null,
-                        color:widget.task.isDone?
-                        Colors.grey
-                        :themeProvider.textColor,
+                      color: widget.task.isDone
+    ? Colors.grey
+    : theme.colorScheme.onSurface,
                         ),
                         ),
                         const SizedBox(width: 6,),
@@ -169,6 +171,7 @@ class _TodoTileState extends State<TodoTile> {
                                     fontFamily: 'Inter',
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
+                                    color: widget.task.priorityColor,
                                   ),
                                 ),
                               ],

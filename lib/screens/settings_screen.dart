@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
-import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
 import 'package:flutter_application_11/widgets/setting_action_tile.dart';
 import 'package:provider/provider.dart';
@@ -9,23 +9,20 @@ import 'package:provider/provider.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  BoxDecoration _buildCardDecoration(ThemeProvider themeProvider){
+  BoxDecoration _buildCardDecoration(BuildContext context,bool isDarkMode){
     return BoxDecoration(
-      color:themeProvider.isDarkMode
-      ?Colors.grey.shade900
-      :Colors.white,
+      color: Theme.of(context).cardColor,
+     
       borderRadius: BorderRadius.circular(20),
       border: Border.all(
-        color:themeProvider.isDarkMode
-        ? Colors.white10
-        :const Color(0xFFE2E8F0),
+       color: isDarkMode ? Colors.white10 : const Color(0xFFE2E8F0),
         width: 1.2
 
       ),
       boxShadow: [
-        if (!themeProvider.isDarkMode)
+        if (!isDarkMode)
           BoxShadow(
-            color: const Color(0xFF0F172A).withOpacity(0.04),
+           color: const Color(0xFF0F172A).withValues(alpha: 0.04),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -35,8 +32,11 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider=Provider.of<ThemeProvider>(context);
-    final taskProvider=Provider.of<TaskProvider>(context);
+   // final themeProvider=Provider.of<ThemeProvider>(context);
+   final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    final taskProvider = Provider.of<TaskProvider>(context);
+   
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: const AppBottomNavigation(currentIndex: 3),
@@ -57,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,
                       fontSize: 25,
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
+                      color: theme.colorScheme.onSurface,
                     ),
                   ),
                   SizedBox(height: 6,),
@@ -76,9 +76,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color:themeProvider.isDarkMode
-              ?Colors.white10
-              :Colors.grey.shade200,
+           color: isDarkMode ? Colors.white10 : Colors.grey.shade200,
               height: 1,
               thickness: 1.5,
             ),
@@ -90,7 +88,7 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.all(20),
-                      decoration: _buildCardDecoration(themeProvider),
+                      decoration: _buildCardDecoration(context,isDarkMode),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -107,22 +105,24 @@ class SettingsScreen extends StatelessWidget {
                           const SizedBox(height: 16,),
 
                           SettingActionTile(
-                           icon:themeProvider.isDarkMode?Icons.dark_mode_outlined:Icons.wb_sunny_outlined ,
+                          icon: isDarkMode ? Icons.dark_mode_outlined : Icons.wb_sunny_outlined,
                            iconColor: const Color(0xFF64748B), 
                            iconBgColor: const Color(0xFFF1F5F9),
                            title: 'Theme', 
-                           subtitle: themeProvider.isDarkMode?'Dark mode':'Light mode', 
+                          subtitle: isDarkMode ? 'Dark mode' : 'Light mode', 
                            buttonText: 'Switch', 
                            buttonTextColor: AppColors.purple, 
                            buttonBgColor: AppColors.purple.withOpacity(0.1), 
-                           onTap: ()=>themeProvider.toggleTheme()),
+                           onTap: (){
+                            Provider.of(context,listen: false).toggleTheme();
+                           }),
                         ],
                       ),
                     ),
                     const SizedBox(height: 16,),
                     Container(
                       padding: EdgeInsets.all(20),
-                      decoration: _buildCardDecoration(themeProvider),
+                     decoration: _buildCardDecoration(context, isDarkMode),
                       child: Column(
                          crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
@@ -173,7 +173,7 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(height: 16,),
                     Container(
                       padding: const EdgeInsets.all(20),
-                      decoration: _buildCardDecoration(themeProvider),
+                     decoration: _buildCardDecoration(context, isDarkMode),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -188,15 +188,16 @@ class SettingsScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 16,),
-                          _buildSummaryRow('Total tasks',
-                          '${taskProvider.tasks.length}',
-                           themeProvider),
+                          _buildSummaryRow(context,
+                          'Total tasks',
+                          '${taskProvider.tasks.length}'
+                           ),
                            const SizedBox(height: 12,),
-                           _buildSummaryRow('Completed', '${taskProvider.completedTasksCount}', themeProvider),
+                           _buildSummaryRow(context,'Completed', '${taskProvider.completedTasksCount}'),
                            const SizedBox(height: 12,),
-                           _buildSummaryRow('Active', '${taskProvider.remainingTaskCount}', themeProvider),
+                           _buildSummaryRow(context,'Active', '${taskProvider.remainingTaskCount}'),
                            const SizedBox(height: 12,),
-                           _buildSummaryRow('Pinned', '${taskProvider.pinnedTasksCount}', themeProvider)
+                           _buildSummaryRow(context,'Pinned', '${taskProvider.pinnedTasksCount}')
                         ],
                       ),
                     )
@@ -209,16 +210,17 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
-  Widget _buildSummaryRow(String label,String value,ThemeProvider themeProvider){
+  Widget _buildSummaryRow(BuildContext context, label,String value){
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF475569),
+           color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF475569),
           ),
         ),
         Text(
@@ -226,7 +228,7 @@ class SettingsScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.bold,
-            color: themeProvider.textColor,
+          color: Theme.of(context).colorScheme.onSurface,
           ),
         )
       ],

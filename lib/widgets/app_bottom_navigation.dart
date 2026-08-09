@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:flutter_application_11/screens/home_screen.dart';
 import 'package:flutter_application_11/screens/search_screen.dart';
 import 'package:flutter_application_11/screens/settings_screen.dart';
@@ -61,9 +61,9 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
         
         
         type: BottomNavigationBarType.fixed,
-        backgroundColor: themeProvider.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         selectedItemColor: AppColors.purple,
-        unselectedItemColor: themeProvider.textColor.withOpacity(0.4),
+        unselectedItemColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
         elevation: 0,
         
         items:  [

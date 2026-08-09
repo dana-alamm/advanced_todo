@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
-import 'package:flutter_application_11/core/providers/theme_provider.dart';
+
 import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
 import 'package:flutter_application_11/widgets/todo_tile.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +11,9 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final themeProvider=Provider.of<ThemeProvider>(context);
+    //final themeProvider=Provider.of<ThemeProvider>(context);
+    final theme=Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     final taskProvider=Provider.of<TaskProvider>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -34,7 +36,7 @@ class SearchScreen extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 25,
                   fontWeight: FontWeight.w700,
-                  color:Theme.of(context).textTheme.bodyMedium!.color
+                 color: theme.colorScheme.onSurface,
                 ),
               ),
               SizedBox(height: 16,),
@@ -43,7 +45,7 @@ class SearchScreen extends StatelessWidget {
                   taskProvider.updateSearchQuery(value);
                 },
                style: TextStyle(
-                color:themeProvider.textColor,
+                color:theme.colorScheme.onSurface,
                 fontFamily: 'Inter'
                ),
                decoration: InputDecoration(
@@ -54,9 +56,9 @@ class SearchScreen extends StatelessWidget {
                   fontSize: 16,
 
                 ),
-                fillColor: themeProvider.isDarkMode
-                ? Colors.white.withOpacity(0.05)
-                :const Color(0xFFF1F5F9),
+              fillColor: isDarkMode
+                ? Colors.white.withValues(alpha: 0.05)
+                : const Color(0xFFF1F5F9),
                 filled: true,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16,vertical: 12),
                 border: OutlineInputBorder(
@@ -76,16 +78,15 @@ class SearchScreen extends StatelessWidget {
 
         
         ),
-        Divider(
-          color:themeProvider.isDarkMode 
-          
-          ?Colors.white10
-          : Colors.grey.shade200,
-          height: 1,
-          thickness: 1.5,
-        ),
+     Divider(
+              color: isDarkMode
+                  ? Colors.white10
+                  : Colors.grey.shade200,
+              height: 1,
+              thickness: 1.5,
+            ),
     Expanded(
-      child:_buildSearchContent(context, taskProvider, themeProvider) ),
+      child:_buildSearchContent(context, taskProvider, isDarkMode ) ),
      ],
       )
       ),
@@ -94,7 +95,7 @@ class SearchScreen extends StatelessWidget {
   Widget _buildSearchContent(
     BuildContext context,
   TaskProvider taskProvider,
-  ThemeProvider themeProvider ){
+  bool isDarkMode ){
     if(taskProvider.searchQuery.isEmpty){
       return Center(
         child: Column(
@@ -103,9 +104,9 @@ class SearchScreen extends StatelessWidget {
             Icon(
               Icons.search_rounded,
               size: 80,
-              color:themeProvider.isDarkMode
-             ? Colors.white.withOpacity(0.3)
-             : const Color(0xff94A3B8).withOpacity(0.6),
+            color: isDarkMode
+    ? Colors.white.withValues(alpha: 0.3)
+    : const Color(0xff94A3B8).withValues(alpha: 0.6),
             ),
             const SizedBox(height: 16,),
             Text(
@@ -115,7 +116,9 @@ class SearchScreen extends StatelessWidget {
                 fontFamily: 'Inter',
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: themeProvider.isDarkMode ? Colors.white.withOpacity(0.4) : const Color(0xff94A3B8),
+                 color: isDarkMode 
+    ? Colors.white.withValues(alpha: 0.4) 
+    : const Color(0xff94A3B8),
               ),
               )
         
@@ -141,7 +144,7 @@ class SearchScreen extends StatelessWidget {
                 fontFamily: 'Inter',
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color:themeProvider.textColor.withOpacity(0.6),
+        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               )
             )
           ],

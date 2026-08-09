@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
 class CategoryTabs extends StatelessWidget {
@@ -10,7 +10,7 @@ class CategoryTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider=Provider.of<ThemeProvider>(context);
+    //final themeProvider=Provider.of<ThemeProvider>(context);
     final taskProvider=Provider.of<TaskProvider>(context);
     return SizedBox(
       height: 40,

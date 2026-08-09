@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
 class TaskFormContent extends StatefulWidget {
@@ -42,7 +42,14 @@ class _TaskFormContentState extends State<TaskFormContent> {
 
   @override
   Widget build(BuildContext context) {
-    final themeprovider=Provider.of<ThemeProvider>(context);
+    //final themeprovider=Provider.of<ThemeProvider>(context);
+    final isDark=Theme.of(context).brightness==Brightness.dark;
+    final textColor=Theme.of(context).colorScheme.onSurface;
+    final fieldBgColor=isDark
+    ?Theme.of(context).colorScheme.surface
+    :const Color(0xFFF8FAFC);
+    final borderColor=Theme.of(context).dividerColor;
+
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -70,7 +77,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                   fontFamily: 'Inter',
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: themeprovider.textColor,
+                  color: textColor,
                 ),
 
             ),
@@ -78,8 +85,8 @@ class _TaskFormContentState extends State<TaskFormContent> {
             Container(
               width: 36,
               height: 36,
-              decoration: const BoxDecoration(
-                color: Color(0xFFF0F4F8),
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white10 : const Color(0xFFF0F4F8),
                 shape: BoxShape.circle,
               ),
               child: IconButton(
@@ -94,29 +101,30 @@ class _TaskFormContentState extends State<TaskFormContent> {
           ],
          ),
          const SizedBox(height: 12,),
-         const Divider(color:Color(0xFFF1F5F9),thickness: 1,height: 1,),
+         Divider(color:borderColor,thickness: 1,height: 1,),
          const SizedBox(height: 20,),
 
          TextField(
           controller: _titleController,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
+            color:textColor,
           ),
           decoration: InputDecoration(
             hintText: isEditMode?'Edit task title':'Add new task',
-            hintStyle: const TextStyle(color: Color(0xFF8A94A6)),
+            hintStyle:  TextStyle(color: textColor.withOpacity(0.4)),
             filled: true,
             fillColor: const Color(0xFFF8FAFC),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color:Color(0xFFE2E8F0)),
+              borderSide:  BorderSide(color:borderColor),
               
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFFE2E8F0))
+              borderSide:  BorderSide(color: borderColor)
             ),
 
           ),
@@ -128,16 +136,16 @@ class _TaskFormContentState extends State<TaskFormContent> {
           style: const TextStyle(fontFamily: 'Inter'),
           decoration: InputDecoration(
             hintText: 'Add a note(optional)',
-            hintStyle: const TextStyle(color: Color(0xFF8A94A6)),
+            hintStyle:  TextStyle(color: textColor.withOpacity(0.4)),
             filled:true,
             fillColor: const Color(0xFFF8FAFC),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+              borderSide:  BorderSide(color:borderColor),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-               borderSide: const BorderSide(color: Color(0xFFE2E8F0))),
+               borderSide:  BorderSide(color: borderColor)),
           ),
          ),
          const SizedBox(height: 20,),

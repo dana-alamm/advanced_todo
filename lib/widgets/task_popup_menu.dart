@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 
 class TaskPopupMenu extends StatefulWidget {
   const TaskPopupMenu({super.key});
@@ -16,11 +16,15 @@ class _TaskPopupMenuState extends State<TaskPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+  //  final themeProvider = Provider.of<ThemeProvider>(context);
+  final theme=Theme.of(context);
+  final isDark=theme.brightness==Brightness.dark;
+  final taskProvider=Provider.of<TaskProvider>(context);
+  final doneCount=taskProvider.doneTasksCount;
 
     return PopupMenuButton<String>(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: themeProvider.isDarkMode ? const Color(0xFF1E1E2E) : Colors.white,
+      color: theme.cardColor,
       elevation: 0, 
       offset: const Offset(0, 45),
       padding: EdgeInsets.zero,
@@ -47,14 +51,14 @@ class _TaskPopupMenuState extends State<TaskPopupMenu> {
          
           color: _isMenuOpen
               ? AppColors.purple.withOpacity(0.1)
-              : (themeProvider.isDarkMode 
-                  ? Colors.white.withOpacity(0.1) 
-                  : Colors.black.withOpacity(0.05)),
+              : (isDark
+              ?Colors.white.withValues(alpha: 0.1)
+              :Colors.black.withValues(alpha: 0.05)),
           
           
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.02),
+           color: Colors.black.withValues(alpha: 0.02),
               blurRadius: 4,
               offset: const Offset(0, 2),
             )
@@ -81,7 +85,7 @@ class _TaskPopupMenuState extends State<TaskPopupMenu> {
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w500,
-                    color: themeProvider.textColor,
+                    color:Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ],
@@ -98,7 +102,9 @@ class _TaskPopupMenuState extends State<TaskPopupMenu> {
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w500,
-                    color: themeProvider.textColor,
+                    color:doneCount > 0 
+    ? Theme.of(context).colorScheme.onSurface 
+    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
                   ),
                 ),
               ],
