@@ -223,4 +223,14 @@ void addTask({
       _saveToStorage();
     }
   }
+
+  void reorderTasks(int oldIndex,int newIndex){
+    if(oldIndex<newIndex){
+      newIndex-=1;
+    }
+    final TaskModel item=_tasks.removeAt(oldIndex);
+    _tasks.insert(newIndex, item);
+    notifyListeners();
+    _saveToStorage();
+  }
 } 

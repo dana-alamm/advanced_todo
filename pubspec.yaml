@@ -37,6 +37,7 @@ dependencies:
   provider: ^6.1.5+1
   shared_preferences: ^2.5.5
   intl: ^0.20.3
+  implicitly_animated_reorderable_list_2: ^0.6.0
 
 dev_dependencies:
   flutter_test:
