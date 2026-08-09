@@ -48,7 +48,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
     final fieldBgColor=isDark
     ?Theme.of(context).colorScheme.surface
     :const Color(0xFFF8FAFC);
-    final borderColor=Theme.of(context).dividerColor;
+   final borderColor = isDark ? Colors.white10 : const Color(0xFFE2E8F0);
 
     return SingleChildScrollView(
       child: Column(
@@ -116,7 +116,9 @@ class _TaskFormContentState extends State<TaskFormContent> {
             hintText: isEditMode?'Edit task title':'Add new task',
             hintStyle:  TextStyle(color: textColor.withOpacity(0.4)),
             filled: true,
-            fillColor: const Color(0xFFF8FAFC),
+             fillColor: isDark
+    ? Colors.white.withValues(alpha: 0.05)
+    : const Color(0xFFF1F5F9),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide:  BorderSide(color:borderColor),
@@ -138,7 +140,9 @@ class _TaskFormContentState extends State<TaskFormContent> {
             hintText: 'Add a note(optional)',
             hintStyle:  TextStyle(color: textColor.withOpacity(0.4)),
             filled:true,
-            fillColor: const Color(0xFFF8FAFC),
+            fillColor: isDark
+    ? Colors.white.withValues(alpha: 0.05)
+    : const Color(0xFFF1F5F9),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide:  BorderSide(color:borderColor),
@@ -226,10 +230,11 @@ class _TaskFormContentState extends State<TaskFormContent> {
               label: 'Work', 
               isSelected: selectedCategory=='Work',
                selectedBgColor: AppColors.purple,
-                unSelectedBgColor: const Color(0xFFF8FAFC),
+                unSelectedBgColor:isDark ? Colors.white.withValues(alpha: 0.05) : const Color(0xFFF8FAFC),
 
                  selectedTextColor: Colors.white,
-                  unSelectedTextColor:Colors.black,
+                  unSelectedTextColor:textColor,
+                  borderColor:borderColor,
                    onTap: (){
                     setState(() {
                       selectedCategory='Work';
@@ -247,7 +252,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                             setState(() {
                               selectedCategory='Personal';
                             });
-                          },
+                          }, borderColor: borderColor,
                           ),
 
           ],
@@ -266,7 +271,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                   setState(() {
                     selectedCategory='Shopping';
                   });
-                 }),
+                 }, borderColor: borderColor,),
                  SizedBox(width: 12,),
                  categoryButton(
                   label: 'Study',
@@ -279,7 +284,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                     setState(() {
                       selectedCategory='Study';
                     });
-                   })
+                   }, borderColor: borderColor,)
           ],
          ),
          SizedBox(height: 9,),
@@ -296,7 +301,7 @@ class _TaskFormContentState extends State<TaskFormContent> {
                             setState(() {
                               selectedCategory='Sports';
                             });
-                             },
+                             }, borderColor: borderColor,
                           ),
   const SizedBox(width: 12),
                   const Expanded(child: SizedBox()),
@@ -345,7 +350,9 @@ class _TaskFormContentState extends State<TaskFormContent> {
         hintText: 'Select a date',
         hintStyle: const TextStyle(color: Color(0xFF8A94A6)),
         filled: true,
-        fillColor: const Color(0xFFF8FAFC),
+         fillColor: isDark
+    ? Colors.white.withValues(alpha: 0.05)
+    : const Color(0xFFF1F5F9),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
          suffixIcon: const Icon(Icons.calendar_today, size: 18, color: Color(0xFF8A94A6)),
                            border: OutlineInputBorder(
@@ -472,7 +479,8 @@ class categoryButton extends StatelessWidget {
     required this.unSelectedBgColor,
      required this.selectedTextColor, 
      required this.unSelectedTextColor, 
-      required this.onTap});
+      required this.onTap, 
+      required Color borderColor});
 
   @override
   Widget build(BuildContext context) {

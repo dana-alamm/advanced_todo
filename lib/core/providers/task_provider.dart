@@ -110,6 +110,11 @@ int getTaskCountByCategory(String category) {
     task.category.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
 
    }
+   tasks.sort((a,b){
+    if(a.isPinned && !b.isPinned)return -1;
+    if(!a.isPinned && b.isPinned)return 1;
+    return 0;
+   });
    return temptasks;
   }
 
@@ -150,7 +155,8 @@ void addTask({
           isDone: false,
         
       );
-      _tasks.add(newTask);
+     // _tasks.add(newTask);
+     _tasks.insert(0,newTask);
       notifyListeners();
       _saveToStorage();
     }
