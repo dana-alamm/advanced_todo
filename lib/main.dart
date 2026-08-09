@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
 import 'package:flutter_application_11/core/services/prefs_services.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:flutter_application_11/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,8 +32,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-    theme: themeProvider.lightTheme,
-    darkTheme: themeProvider.darkTheme,
+    theme: AppTheme.lightTheme,
+    darkTheme: AppTheme.darkTheme,
     themeMode: themeProvider.isDarkMode?ThemeMode.dark:ThemeMode.light,
       home: const HomeScreen(),
     );

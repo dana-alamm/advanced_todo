@@ -18,29 +18,28 @@ class StatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final themeProvider=Provider.of<ThemeProvider>(context);
+     //final themeProvider=Provider.of<ThemeProvider>(context);
+     final theme=Theme.of(context);
+     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color:themeProvider.isDarkMode
-      ?Colors.grey.shade900
-      :Colors.white,
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(
-        color: themeProvider.isDarkMode 
-        ? Colors.white10
-        : const Color(0xffF1F5F9),
-          width: 1.5,
+    color: isDark ? const Color(0xFF1E1E2E) : Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: isDark ? Colors.white10 : const Color(0xFFE2E8F0),
+          width: 1.2,
       ),
           boxShadow: [
-           if(!themeProvider.isDarkMode)
-              BoxShadow(
-                color:const Color(0xFF0F172A).withOpacity(0.04),
-                blurRadius: 16,
-                 spreadRadius: 0,
-                offset: const Offset(0, 4),
-                          ),
+           if(!isDark)
+             BoxShadow(
+            
+              color: const Color(0xFF0F172A).withValues(alpha: 0.04),
+              blurRadius: 16,
+              spreadRadius: 0,
+              offset: const Offset(0, 4),
+            ),
           ],
     ),
     child: Column(
@@ -75,7 +74,7 @@ class StatCard extends StatelessWidget {
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-            color:themeProvider.textColor,
+            color:Theme.of(context).colorScheme.onSurface,
           ),
         )
       ],

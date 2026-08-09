@@ -10,16 +10,21 @@ class EditTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeprovider = Provider.of<ThemeProvider>(context);
+    //final themeprovider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      backgroundColor: themeprovider.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Edit Task', style: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.bold)),
+        title: Text('Edit Task', style: TextStyle(fontFamily: 'Inter', 
+        fontWeight: FontWeight.bold,
+        color:Theme.of(context).colorScheme.onSurface
+        )),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: themeprovider.textColor),
+          icon: Icon(Icons.arrow_back,
+           color: Theme.of(context).colorScheme.onSurface,
+           ),
           onPressed: () => Navigator.pop(context),
         ),
       ),

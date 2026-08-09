@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
 class FilterTabs extends StatelessWidget {
@@ -11,16 +11,15 @@ class FilterTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider=Provider.of<ThemeProvider>(context);
+    //final themeProvider=Provider.of<ThemeProvider>(context);
     final taskProvider=Provider.of<TaskProvider>(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: themeProvider.isDarkMode
-        ?Colors.white.withValues(alpha: 0.05)
-        :Colors.grey.withValues(alpha: 0.1),
+        color:Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -29,21 +28,24 @@ class FilterTabs extends StatelessWidget {
            title: 'All', 
            isActive: taskProvider.currentFilter=='All',
             onTap: ()=>taskProvider.changeFilter('All'),
-             themeProvider: themeProvider,
+            isDark: isDark
+           
              ),
 
              _buildTabButton(context: context,
               title: 'Active',
                isActive: taskProvider.currentFilter=='Active',
                 onTap: ()=>taskProvider.changeFilter('Active'),
-                 themeProvider: themeProvider),
+                isDark: isDark,
+                 ),
 
                  _buildTabButton(context: context,
                   title: 'Done',
                    isActive:taskProvider.currentFilter=='Done', 
 
                    onTap: ()=>taskProvider.changeFilter('Done'),
-                    themeProvider: themeProvider),
+                   isDark: isDark,
+                  ),
         ],
       ),
     );
@@ -54,7 +56,8 @@ class FilterTabs extends StatelessWidget {
     required String title,
     required bool isActive,
     required VoidCallback onTap,
-    required ThemeProvider themeProvider,//to read the mode
+   // required ThemeProvider themeProvider,//to read the mode
+   required bool isDark,
 
 
   }){
@@ -65,10 +68,10 @@ class FilterTabs extends StatelessWidget {
           height: 35,
           decoration: BoxDecoration(
             color: isActive
-            ?(themeProvider.isDarkMode ?const Color(0xFF2E2E2E):Colors.white)
+            ?Theme.of(context).colorScheme.surface
             :Colors.transparent,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: isActive && !themeProvider.isDarkMode
+            boxShadow: isActive && !isDark
             ? [
               BoxShadow(
                 color:Colors.black.withValues(alpha: 0.05),
@@ -87,7 +90,7 @@ class FilterTabs extends StatelessWidget {
                 fontWeight: isActive ?FontWeight.w700:FontWeight.w500,
                 color:isActive
                 ?AppColors.purple
-                :(themeProvider.isDarkMode?Colors.grey:AppColors.textGrey)
+                :Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           )

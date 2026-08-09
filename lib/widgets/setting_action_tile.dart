@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
-import 'package:flutter_application_11/core/theme/app_colors.dart';
+import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
 class SettingActionTile extends StatelessWidget {
@@ -29,7 +29,7 @@ class SettingActionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final themeProvider=Provider.of<ThemeProvider>(context);
+   //final themeProvider=Provider.of<ThemeProvider>(context);
     return Row(
     children: [
       Container(
@@ -51,7 +51,7 @@ class SettingActionTile extends StatelessWidget {
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  color:themeProvider.isDarkMode?Colors.white:const Color(0xFF1E293B),
+                  color:Theme.of(context).colorScheme.onSurface,
                 ),
               ),
               const SizedBox(height: 2,),

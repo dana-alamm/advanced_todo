@@ -3,7 +3,7 @@
  import 'package:flutter/material.dart';
  import 'package:flutter_application_11/core/providers/task_provider.dart';
 import 'package:flutter_application_11/core/providers/theme_provider.dart';
- import 'package:flutter_application_11/core/theme/app_colors.dart';
+ import 'package:flutter_application_11/core/theme/app_theme.dart';
 import 'package:flutter_application_11/widgets/app_bottom_navigation.dart';
 import 'package:flutter_application_11/widgets/category_tabs.dart';
  import 'package:flutter_application_11/widgets/filter_tabs.dart';
@@ -26,7 +26,9 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
   
   @override
    Widget build(BuildContext context) {
-    final themeProvider=Provider.of<ThemeProvider>(context);
+   // final themeProvider=Provider.of<ThemeProvider>(context);
+   final theme=Theme.of(context);
+   final isDarkMode=theme.brightness==Brightness.dark;
     final activeCount=Provider.of<TaskProvider>(context).activeTasksCount;
     return Scaffold(
       backgroundColor:Theme.of(context).scaffoldBackgroundColor,
@@ -50,7 +52,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                       fontFamily: 'Inter',
                       fontSize: 25,
                       fontWeight: FontWeight.w700,
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
+                   color: theme.colorScheme.onSurface,
                      
 
                     ),
@@ -73,17 +75,17 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                     Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color:themeProvider.isDarkMode
-                        ?Colors.white.withOpacity(0.1)
-                        :Colors.grey.withOpacity(0.15),
+                       color: isDarkMode
+                       ? Colors.white.withValues(alpha: 0.1)
+                       : Colors.black.withValues(alpha: 0.05),
                         shape: BoxShape.circle
                       ),
                       child: GestureDetector(
-                        onTap: ()=>themeProvider.toggleTheme(),
+                       onTap: () => Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
                           
                         
                         child: Icon(Icons.wb_sunny_outlined,
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
+                        color: theme.colorScheme.onSurface,
 
                          ),
                         
@@ -93,9 +95,9 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                     Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: themeProvider.isDarkMode
-                              ? Colors.white.withValues(alpha: 0.1)
-                              : Colors.black.withValues(alpha: 0.05),
+                     color: isDarkMode
+                       ? Colors.white.withValues(alpha: 0.1)
+                       : Colors.black.withValues(alpha: 0.05),
                         shape: BoxShape.circle
                       ),
                       // child: GestureDetector(
@@ -129,9 +131,10 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                   fontFamily: 'Inter',
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
-                  color: themeProvider.isDarkMode
-                  ? Colors.white
-                  :Color(0xff52525C),
+                  // color: themeProvider.isDarkMode
+                  // ? Colors.white
+                  // :Color(0xff52525C),
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ),
@@ -155,7 +158,7 @@ import '../core/providers/theme_provider.dart' show ThemeProvider;
                           style:TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color:themeProvider.textColor.withOpacity(0.6),
+                            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                           )
                         )
                       ],
