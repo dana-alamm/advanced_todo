@@ -102,16 +102,16 @@ Color get priorityBorderColor {
     return Colors.green.shade100;
   }//border color
 
-  String get categoryEmoji{
-    final Map<String,String> emojiMap={
-      'work':'💼',
-      'personal':'🏡',
-      'shopping':'🛒',
-      'study':'📚',
-      'sports':'🏀',
-      'cooking':'🍳',
+  // String get categoryEmoji{
+  //   final Map<String,String> emojiMap={
+  //     'work':'💼',
+  //     'personal':'🏡',
+  //     'shopping':'🛒',
+  //     'study':'📚',
+  //     'sports':'🏀',
+  //     'cooking':'🍳',
     
-    };
-    return emojiMap[category.toLowerCase()] ?? '🏷️';
-  }
+  //   };
+  //   return emojiMap[category.toLowerCase()] ?? '🏷️';
+  // }
 }

@@ -115,8 +115,12 @@ int getTaskCountByCategory(String category) {
 
    }
    temptasks.sort((a,b){
-    if(a.isPinned && !b.isPinned)return -1;
-    if(!a.isPinned && b.isPinned)return 1;
+    if(a.isDone !=b.isDone){
+      return a.isDone ? 1: -1;
+    }
+    // if(a.isPinned != b.isPinned){
+    //   return b.isPinned ? -1 : 1;
+    // }
     return 0;
    });
    return temptasks;
@@ -169,6 +173,8 @@ void addTask({
   void toggleTaskStatus( TaskModel task){
      
      task.toggleDone();
+
+     _sortTasks();
      notifyListeners();
      _saveToStorage();
   }
@@ -218,11 +224,12 @@ void addTask({
     if(index !=-1){
       _tasks[index] = _tasks[index].copyWith(isPinned: !_tasks[index].isPinned);
 
-      _tasks.sort((a,b){
-     if(a.isPinned && !b.isPinned)return -1;
-     if(!a.isPinned && b.isPinned)return 1;
-     return 0;
-      });
+    //   _tasks.sort((a,b){
+    //  if(a.isPinned && !b.isPinned)return -1;
+    //  if(!a.isPinned && b.isPinned)return 1;
+    //  return 0;
+    //   });
+       _sortTasks();
       notifyListeners();
       _saveToStorage();
     }
@@ -236,5 +243,18 @@ void addTask({
     _tasks.insert(newIndex, item);
     notifyListeners();
     _saveToStorage();
+  }
+
+  void _sortTasks(){
+    _tasks.sort((a,b){
+      if(a.isDone != b.isDone){
+        return a.isDone ? 1: -1;
+      }
+      // if(a.isPinned!=b.isPinned){
+      //   return a.isPinned?-1:1;
+      // }
+     return 0;
+      
+    });
   }
 } 
