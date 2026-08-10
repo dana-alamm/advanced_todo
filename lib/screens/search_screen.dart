@@ -191,10 +191,54 @@ class _SearchScreenState extends State<SearchScreen> {
           key:ValueKey(task.id),
           task: task,
           onStateChanged: ()=>taskProvider.toggleTaskStatus(task),
-           onDelete: (){}, 
+           
            onEdit: (){},
+
             onPinToggled:()=>taskProvider.togglePinTask(task.id),
-             index: index,);
-      });
+
+             index: index,
+
+             onDelete:(){
+              showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: const Text(
+            'Confirm Delete',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Text('Are you sure you want to delete "${task.title}"?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                taskProvider.deleteTask(task);
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Delete',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+            ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        );
+      },
+    );
   }
 }
