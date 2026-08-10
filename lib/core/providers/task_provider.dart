@@ -53,7 +53,8 @@ int getTaskCountByPriority(String priority){
 }
 
 int getTaskCountByCategory(String category) {
-  return _tasks.where((task) => task.category.toLowerCase() == category.toLowerCase()).length;
+  //return _tasks.where((task) => task.category.toLowerCase() == category.toLowerCase()).length;
+  return _tasks.where((task)=>!task.isDone && task.category.trim().toLowerCase()==category.trim().toLowerCase()).length;
 }
 
   String _searchQuery='';
