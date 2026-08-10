@@ -26,6 +26,11 @@ class _TaskFormContentState extends State<TaskFormContent> {
   @override
   void initState(){
     super.initState();
+    _titleController.addListener((){
+      if(mounted)setState(() {
+        
+      });
+    });
     if(isEditMode){
       final task=widget.taskToEdit!;
       _titleController.text=task['title']??'';
@@ -39,16 +44,26 @@ class _TaskFormContentState extends State<TaskFormContent> {
     }
   }
 
+@override
+void dispose(){
+  _titleController.dispose();
+  _notesController.dispose();
+  _dateController.dispose();
+  super.dispose();
+}
 
   @override
   Widget build(BuildContext context) {
     //final themeprovider=Provider.of<ThemeProvider>(context);
     final isDark=Theme.of(context).brightness==Brightness.dark;
     final textColor=Theme.of(context).colorScheme.onSurface;
+    
     final fieldBgColor=isDark
     ?Theme.of(context).colorScheme.surface
     :const Color(0xFFF8FAFC);
    final borderColor = isDark ? Colors.white10 : const Color(0xFFE2E8F0);
+   final isTitleValid = _titleController.text.trim().isNotEmpty;
+   
 
     return SingleChildScrollView(
       child: Column(
@@ -373,8 +388,8 @@ class _TaskFormContentState extends State<TaskFormContent> {
           width: double.infinity,
           height: 52,
           child: ElevatedButton(
-            onPressed: (){
-              if(_titleController.text.trim().isNotEmpty){
+            onPressed: isTitleValid ? (){
+              
                 final taskProvider=Provider.of<TaskProvider>(context,listen: false);
                 if(isEditMode){
                   taskProvider.updateTask(
@@ -394,10 +409,19 @@ class _TaskFormContentState extends State<TaskFormContent> {
                 }
                 Navigator.pop(context);
               }
-            },
+            :null,
+  
             style:ElevatedButton.styleFrom(
-              backgroundColor: AppColors.purple,
-              foregroundColor: Colors.white,
+              backgroundColor: isTitleValid 
+              ? AppColors.purple
+              :(isDark?Colors.white10 :Colors.grey.shade300),
+              foregroundColor:isTitleValid
+                    ? Colors.white
+                    : (isDark ? Colors.white38 : Colors.grey.shade500),
+                    disabledBackgroundColor:
+                    isDark ? Colors.white10 : Colors.grey.shade300,
+                disabledForegroundColor:
+                    isDark ? Colors.white38 : Colors.grey.shade500,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
             ) ,
              child: Text(isEditMode?
