@@ -189,10 +189,10 @@ class _TodoTileState extends State<TodoTile> {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                             Text(
-                             "${widget.task.categoryEmoji}",
-                             style: const TextStyle(fontSize: 14),
-                             ),
+                            //  Text(
+                            //  "${widget.task.categoryEmoji}",
+                            //  style: const TextStyle(fontSize: 14),
+                            //  ),
                              Text(
                               widget.task.category,
                               style: TextStyle(
