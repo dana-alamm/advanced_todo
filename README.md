@@ -83,6 +83,9 @@ This repository documents the complete development roadmap across three dedicate
 <img width="260" alt="Screenshot 2026-09-20 164346" src="https://github.com/user-attachments/assets/3abe6fbc-4097-4e7f-87c7-5eca654d2402" />
 <img width="260" alt="Screenshot 2026-09-20 164355" src="https://github.com/user-attachments/assets/bdb4bbe2-86f1-4371-9a70-5f42b1000df2" />
 
+### Settings Screen (Light Mode and Dark Mode)
+<img width="260" alt="Screenshot 2026-09-20 164411" src="https://github.com/user-attachments/assets/35fa98f7-f370-4cd7-ad43-fcaa07c88c86" />
+<img width="260" alt="Screenshot 2026-09-20 164402" src="https://github.com/user-attachments/assets/cb1f35af-b5e7-4213-8ba1-cdb3148bc989" />
 
 
 
