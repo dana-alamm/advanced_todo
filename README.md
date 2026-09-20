@@ -36,11 +36,8 @@ This repository documents the complete development roadmap across three dedicate
 ### 1️⃣ Basic Version (`old-todo`)
 
 | Feature / State | Light Mode | Dark Mode |
-| :---: | :---: |
-| **Main Screen** | 
-<img width="260"  alt="Screenshot 2026-09-20 154058" src="https://github.com/user-attachments/assets/3b47ab99-cde7-42b1-b7fa-2a6f6fd9e6c7" />
-| <img width="260" alt="Screenshot 2026-09-20 154110" src="https://github.com/user-attachments/assets/9a5deabc-c480-4758-aa00-e499d07865ef" />
-|
-| **Adding Tasks** | <img src="assets/screenshots/old_add_light.png" width="260" alt="Adding Task Light"/> | <img src="assets/screenshots/old_add_dark.png" width="260" alt="Adding Task Dark"/> |
-| **Active Tasks** | <img src="assets/screenshots/old_active_light.png" width="260" alt="Active Tasks Light"/> | <img src="assets/screenshots/old_active_dark.png" width="260" alt="Active Tasks Dark"/> |
-| **Completed Tasks** | <img src="assets/screenshots/old_completed_light.png" width="260" alt="Completed Tasks Light"/> | <img src="assets/screenshots/old_completed_dark.png" width="260" alt="Completed Tasks Dark"/> |
+| :--- | :---: | :---: |
+| **Main Screen** | <img width="260" alt="Main Screen Light" src="https://github.com/user-attachments/assets/3b47ab99-cde7-42b1-b7fa-2a6f6fd9e6c7" /> | <img width="260" alt="Main Screen Dark" src="https://github.com/user-attachments/assets/9a5deabc-c480-4758-aa00-e499d07865ef" /> |
+| **Adding Tasks** | <!-- ضعي رابط صورة الإضافة باللايت هنا --> | <!-- ضعي رابط صورة الإضافة بالدارك هنا --> |
+| **Active Tasks** | <!-- ضعي رابط صورة الأكتيف باللايت هنا --> | <!-- ضعي رابط صورة الأكتيف بالدارك هنا --> |
+| **Completed Tasks** | <!-- ضعي رابط صورة الكومبليتد باللايت هنا --> | <!-- ضعي رابط صورة الكومبليتد بالدارك هنا --> |
