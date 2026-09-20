@@ -1,17 +1,20 @@
-# flutter_application_11
+# 📝 Flutter To-Do Project (From Basic to Advanced)
 
-A new Flutter project.
+A comprehensive task management application developed in **Flutter**, showcasing an evolutionary journey from a fundamental to-do app to a feature-rich, high-performance productivity tool.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📌 Project Overview
 
-A few resources to get you started if this is your first Flutter project:
+This repository documents the complete development roadmap across three dedicated branches:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+1. **`old-todo` (Basic Version):**  
+   The initial prototype focusing on fundamental CRUD operations (Create, Read, Update, Delete) and basic local storage using `SharedPreferences`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **`feature/advanced-todo` (Advanced Development 🚀):**  
+   The feature branch where major UX and logic upgrades were introduced, including drag-and-drop task reordering, smart sorting (pinned/active on top, completed at bottom), theme toggling, dedicated search isolation, and input validation.
+
+3. **`main` (Production / Stable Release):**  
+   The primary branch containing the final, stable, and tested version of the application with all advanced features integrated and verified.
+
+---
