@@ -42,3 +42,13 @@ This repository documents the complete development roadmap across three dedicate
 | **Active Tasks** | <img width="260" alt="Active Tasks Light" src="https://github.com/user-attachments/assets/ef47c68f-1d5c-40d2-8e58-d4e2baf710d8" /> | <img width="260" alt="Active Tasks Dark" src="https://github.com/user-attachments/assets/22ffef81-5250-41b8-b760-120710608a42" /> |
 | **Completed Tasks** | <img width="260" alt="Completed Tasks Light" src="https://github.com/user-attachments/assets/85a0c770-20e4-4e72-a8dd-9d4fa6d04149" /> | <img width="260" alt="Completed Tasks Dark" src="https://github.com/user-attachments/assets/d3e292ef-9c4f-4ba9-ba03-ee116a4ad83f" /> |
 
+---
+
+### 2️⃣ Advanced Version (`feature/advanced-todo` & `main`)
+
+| Tasks Screen (Light Mode and Dark Mode) |
+| --- |
+<img width="260" alt="Screenshot 2026-09-20 163850" src="https://github.com/user-attachments/assets/a700dd42-bef4-4d3d-b63a-d66cb16a2a3b" />
+<img width="260" alt="Screenshot 2026-09-20 163841" src="https://github.com/user-attachments/assets/eadd5740-3a2c-40bf-8844-8cfa139c3437" />
+
+
