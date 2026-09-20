@@ -69,6 +69,9 @@ This repository documents the complete development roadmap across three dedicate
 <img width="260" alt="Screenshot 2026-09-20 163916" src="https://github.com/user-attachments/assets/249d458b-4317-4457-aec6-95e48689f172" />
 <img width="260" alt="Screenshot 2026-09-20 163902" src="https://github.com/user-attachments/assets/4caecb2f-546a-4659-a5cc-382513cc5afc" />
 
+### Edit Task (Light Mode and Dark Mode)
+<img width="260" alt="Screenshot 2026-09-20 164444" src="https://github.com/user-attachments/assets/41b9bd8f-b67f-4094-887a-4c5a4d282b93" />
+<img width="260" alt="Screenshot 2026-09-20 164452" src="https://github.com/user-attachments/assets/bc2adcb0-3924-4d1c-86f7-3693a994a2ea" />
 
 
 
