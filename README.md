@@ -48,7 +48,7 @@ This repository documents the complete development roadmap across three dedicate
 
 | Tasks Screen (Light Mode and Dark Mode) |
 | --- |
-<img width="260" alt="Screenshot 2026-09-20 163850" src="https://github.com/user-attachments/assets/a700dd42-bef4-4d3d-b63a-d66cb16a2a3b" />
+<img width="260" alt="Screenshot 2026-09-20 163841" src="https://github.com/user-attachments/assets/2a254346-bfe1-44f5-958b-31b89ebb3d3c" />
 <img width="260" alt="Screenshot 2026-09-20 164104" src="https://github.com/user-attachments/assets/0b0c9276-c891-4377-85b1-c22ecf6cbe88" />
 <img width="260" alt="Screenshot 2026-09-20 164125" src="https://github.com/user-attachments/assets/693d1511-921c-499c-b7fe-14536bd1e525" />
 <img width="260" alt="Screenshot 2026-09-20 164212" src="https://github.com/user-attachments/assets/f4dcf5b0-cc9c-481c-9d76-9282bfc21b8d" />
@@ -59,7 +59,7 @@ This repository documents the complete development roadmap across three dedicate
 
 
 
-<img width="260" alt="Screenshot 2026-09-20 163841" src="https://github.com/user-attachments/assets/eadd5740-3a2c-40bf-8844-8cfa139c3437" />
+
 
 
 
