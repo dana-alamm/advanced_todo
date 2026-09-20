@@ -65,6 +65,11 @@ This repository documents the complete development roadmap across three dedicate
 <img width="260" alt="Screenshot 2026-09-20 164229" src="https://github.com/user-attachments/assets/8e12b40b-512f-4bd2-ada0-5c7dabd9d86d" />
 <img width="260" alt="Screenshot 2026-09-20 164249" src="https://github.com/user-attachments/assets/ad550893-487b-4475-9277-4501fb222477" />
 
+### Add Tasks (Light Mode and Dark Mode)
+<img width="260" alt="Screenshot 2026-09-20 163916" src="https://github.com/user-attachments/assets/249d458b-4317-4457-aec6-95e48689f172" />
+<img width="260" alt="Screenshot 2026-09-20 163902" src="https://github.com/user-attachments/assets/4caecb2f-546a-4659-a5cc-382513cc5afc" />
+
+
 
 
 
