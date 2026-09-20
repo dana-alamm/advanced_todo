@@ -47,8 +47,7 @@ This repository documents the complete development roadmap across three dedicate
 
 ### 2️⃣ Advanced Version (`feature/advanced-todo` & `main`)
 
-| Tasks Screen (Light Mode) |
-| --- |
+### Tasks Screen (Light Mode)
 <img width="260" alt="Screenshot 2026-09-20 163841" src="https://github.com/user-attachments/assets/2a254346-bfe1-44f5-958b-31b89ebb3d3c" />
 <img width="260" alt="Screenshot 2026-09-20 164104" src="https://github.com/user-attachments/assets/0b0c9276-c891-4377-85b1-c22ecf6cbe88" />
 <img width="260" alt="Screenshot 2026-09-20 164125" src="https://github.com/user-attachments/assets/693d1511-921c-499c-b7fe-14536bd1e525" />
