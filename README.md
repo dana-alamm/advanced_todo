@@ -127,4 +127,24 @@ This repository documents the complete development roadmap across three dedicate
 
 <img width="260" alt="Screenshot 2026-09-20 164402" src="https://github.com/user-attachments/assets/cb1f35af-b5e7-4213-8ba1-cdb3148bc989" />
 
+---
+
+## ✨ Advanced Features Breakdown
+
+* 🔄 **Reorderable Task Cards:** Drag-and-drop tasks using the dedicated drag handle to prioritize dynamically.
+* 📌 **Smart Auto-Sort:** Active and pinned tasks stay at the top; completing a task automatically moves it to the bottom.
+* 🔍 **Dedicated Search Screen:** Isolated real-time search filtering across task titles, notes, and categories with direct task deletion support.
+* ✍️ **Form Validation:** The "Add Task" button is disabled until a valid title is entered, ensuring clean data entry.
+* 📊 **Active Category Counters:** Statistics display real-time counters representing only pending, active tasks.
+* 🌓 **Adaptive Theming:** Full Light and Dark mode synchronization across all screens and modal sheets.
+
+---
+
+## 🛠️ Tech Stack & Dependencies
+
+* **Framework:** [Flutter](https://flutter.dev) (Dart)
+* **State Management:** [Provider](https://pub.dev/packages/provider)
+* **Local Storage:** [shared_preferences](https://pub.dev/packages/shared_preferences)
+
+
 
