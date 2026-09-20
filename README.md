@@ -57,6 +57,16 @@ This repository documents the complete development roadmap across three dedicate
 <img width="260" alt="Screenshot 2026-09-20 164241" src="https://github.com/user-attachments/assets/7afffe42-04ee-40eb-a57f-6b0affd88fd4" />
 <img width="260" alt="Screenshot 2026-09-20 164417" src="https://github.com/user-attachments/assets/e33c4a87-1615-44e4-83e1-7d311bc62cad" />
 
+|Tasks Screen (Dark Mode) |
+| --- |
+<img width="260" alt="Screenshot 2026-09-20 163850" src="https://github.com/user-attachments/assets/42eb4363-4946-47ef-a9e1-3b273b766afb" />
+<img width="260" alt="Screenshot 2026-09-20 164111" src="https://github.com/user-attachments/assets/5c54965f-59c7-40d5-8e76-3a377d5dcf33" />
+<img width="260" alt="Screenshot 2026-09-20 164118" src="https://github.com/user-attachments/assets/e7c01fdb-615f-4c17-95d8-bcc1c08bd60f" />
+<img width="260" alt="Screenshot 2026-09-20 164133" src="https://github.com/user-attachments/assets/c906b6db-ac33-4ecf-8335-d9f9960ded3d" />
+<img width="260" alt="Screenshot 2026-09-20 164229" src="https://github.com/user-attachments/assets/8e12b40b-512f-4bd2-ada0-5c7dabd9d86d" />
+<img width="260" alt="Screenshot 2026-09-20 164249" src="https://github.com/user-attachments/assets/ad550893-487b-4475-9277-4501fb222477" />
+
+
 
 
 
