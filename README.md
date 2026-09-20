@@ -77,6 +77,12 @@ This repository documents the complete development roadmap across three dedicate
 <img width="260" alt="Screenshot 2026-09-20 164311" src="https://github.com/user-attachments/assets/13139e14-df4b-4ad7-b3c4-1fe850b23b72" />
 <img width="260" alt="Screenshot 2026-09-20 164301" src="https://github.com/user-attachments/assets/49480a89-2c28-48b6-b8f8-7a87119df5ca" />
 
+### Stats Screen (Light Mode and Drak Mode)
+<img width="260" alt="Screenshot 2026-09-20 164321" src="https://github.com/user-attachments/assets/8e441658-3e6c-4626-8e79-9488c58a873f" />
+<img width="260" alt="Screenshot 2026-09-20 164333" src="https://github.com/user-attachments/assets/467aa346-ec7a-4af7-b0f0-df41eb26a3d9" />
+<img width="260" alt="Screenshot 2026-09-20 164346" src="https://github.com/user-attachments/assets/3abe6fbc-4097-4e7f-87c7-5eca654d2402" />
+<img width="260" alt="Screenshot 2026-09-20 164355" src="https://github.com/user-attachments/assets/bdb4bbe2-86f1-4371-9a70-5f42b1000df2" />
+
 
 
 
