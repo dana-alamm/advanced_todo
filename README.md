@@ -47,31 +47,84 @@ This repository documents the complete development roadmap across three dedicate
 
 ### 2️⃣ Advanced Version (`feature/advanced-todo` & `main`)
 
-#### 📱 Main Screen & Task Views
-| State / Screen | Light Mode | Dark Mode |
-| :--- | :---: | :---: |
-| **All Tasks Overview** | <img width="260" alt="Main Light" src="https://github.com/user-attachments/assets/2a254346-bfe1-44f5-958b-31b89ebb3d3c" /> | <img width="260" alt="Main Dark" src="https://github.com/user-attachments/assets/42eb4363-4946-47ef-a9e1-3b273b766afb" /> |
-| **Active Tasks Filter** | <img width="260" alt="Active Tasks Light" src="https://github.com/user-attachments/assets/0b0c9276-c891-4377-85b1-c22ecf6cbe88" /> | <img width="260" alt="Active Tasks Dark" src="https://github.com/user-attachments/assets/5c54965f-59c7-40d5-8e76-3a377d5dcf33" /> |
-| **Completed Tasks Filter** | <img width="260" alt="Completed Light" src="https://github.com/user-attachments/assets/693d1511-921c-499c-b7fe-14536bd1e525" /> | <img width="260" alt="Completed Dark" src="https://github.com/user-attachments/assets/e7c01fdb-615f-4c17-95d8-bcc1c08bd60f" /> |
-| **Category Filter (e.g. Work)** | <img width="260" alt="Category Filter Light" src="https://github.com/user-attachments/assets/f07fa785-e3a7-46a6-a015-576c3c728811" /> | <img width="260" alt="Category Filter Dark" src="https://github.com/user-attachments/assets/c906b6db-ac33-4ecf-8335-d9f9960ded3d" /> |
-| **Pinned Tasks & Reordering** | <img width="260" alt="Pinned Light" src="https://github.com/user-attachments/assets/57190663-3e24-4d3b-b14c-5fc7070dc2ca" /> | <img width="260" alt="Pinned Dark" src="https://github.com/user-attachments/assets/8e12b40b-512f-4bd2-ada0-5c7dabd9d86d" /> |
-| **Task Reordering Action** | <img width="260" alt="Reordering Light" src="https://github.com/user-attachments/assets/7afffe42-04ee-40eb-a57f-6b0affd88fd4" /> | <img width="260" alt="Reordering Dark" src="https://github.com/user-attachments/assets/ad550893-487b-4475-9277-4501fb222477" /> |
-| **Empty State** | <img width="260" alt="Empty State Light" src="https://github.com/user-attachments/assets/e33c4a87-1615-44e4-83e1-7d311bc62cad" /> | — |
 
----
 
-#### ✏️ Task Form (Add & Edit)
-| Action / State | Light Mode | Dark Mode |
-| :--- | :---: | :---: |
-| **Add Task Modal** | <img width="260" alt="Add Task Light" src="https://github.com/user-attachments/assets/249d458b-4317-4457-aec6-95e48689f172" /> | <img width="260" alt="Add Task Dark" src="https://github.com/user-attachments/assets/4caecb2f-546a-4659-a5cc-382513cc5afc" /> |
-| **Edit Task Modal** | <img width="260" alt="Edit Task Light" src="https://github.com/user-attachments/assets/41b9bd8f-b67f-4094-887a-4c5a4d282b93" /> | <img width="260" alt="Edit Task Dark" src="https://github.com/user-attachments/assets/bc2adcb0-3924-4d1c-86f7-3693a994a2ea" /> |
+### Tasks Screen (Light Mode)
 
----
+<img width="260" alt="Screenshot 2026-09-20 163841" src="https://github.com/user-attachments/assets/2a254346-bfe1-44f5-958b-31b89ebb3d3c" />
 
-#### 🔍 Search, Analytics & Settings
-| Feature / Screen | Light Mode | Dark Mode |
-| :--- | :---: | :---: |
-| **Dedicated Search Screen** | <img width="260" alt="Search Light" src="https://github.com/user-attachments/assets/13139e14-df4b-4ad7-b3c4-1fe850b23b72" /> | <img width="260" alt="Search Dark" src="https://github.com/user-attachments/assets/49480a89-2c28-48b6-b8f8-7a87119df5ca" /> |
-| **Productivity Statistics (Top)** | <img width="260" alt="Stats Light" src="https://github.com/user-attachments/assets/8e441658-3e6c-4626-8e79-9488c58a873f" /> | <img width="260" alt="Stats Dark" src="https://github.com/user-attachments/assets/467aa346-ec7a-4af7-b0f0-df41eb26a3d9" /> |
-| **Active Categories Distribution** | <img width="260" alt="Categories Stats Light" src="https://github.com/user-attachments/assets/3abe6fbc-4097-4e7f-87c7-5eca654d2402" /> | <img width="260" alt="Categories Stats Dark" src="https://github.com/user-attachments/assets/bdb4bbe2-86f1-4371-9a70-5f42b1000df2" /> |
-| **Settings Screen** | <img width="260" alt="Settings Light" src="https://github.com/user-attachments/assets/35fa98f7-f370-4cd7-ad43-fcaa07c88c86" /> | <img width="260" alt="Settings Dark" src="https://github.com/user-attachments/assets/cb1f35af-b5e7-4213-8ba1-cdb3148bc989" /> |
+<img width="260" alt="Screenshot 2026-09-20 164104" src="https://github.com/user-attachments/assets/0b0c9276-c891-4377-85b1-c22ecf6cbe88" />
+
+<img width="260" alt="Screenshot 2026-09-20 164125" src="https://github.com/user-attachments/assets/693d1511-921c-499c-b7fe-14536bd1e525" />
+
+<img width="260" alt="Screenshot 2026-09-20 164139" src="https://github.com/user-attachments/assets/f07fa785-e3a7-46a6-a015-576c3c728811" />
+
+<img width="260" alt="Screenshot 2026-09-20 164235" src="https://github.com/user-attachments/assets/57190663-3e24-4d3b-b14c-5fc7070dc2ca" />
+
+<img width="260" alt="Screenshot 2026-09-20 164241" src="https://github.com/user-attachments/assets/7afffe42-04ee-40eb-a57f-6b0affd88fd4" />
+
+<img width="260" alt="Screenshot 2026-09-20 164417" src="https://github.com/user-attachments/assets/e33c4a87-1615-44e4-83e1-7d311bc62cad" />
+
+
+
+
+
+### Tasks Screen (Dark Mode)
+
+<img width="260" alt="Screenshot 2026-09-20 163850" src="https://github.com/user-attachments/assets/42eb4363-4946-47ef-a9e1-3b273b766afb" />
+
+<img width="260" alt="Screenshot 2026-09-20 164111" src="https://github.com/user-attachments/assets/5c54965f-59c7-40d5-8e76-3a377d5dcf33" />
+
+<img width="260" alt="Screenshot 2026-09-20 164118" src="https://github.com/user-attachments/assets/e7c01fdb-615f-4c17-95d8-bcc1c08bd60f" />
+
+<img width="260" alt="Screenshot 2026-09-20 164133" src="https://github.com/user-attachments/assets/c906b6db-ac33-4ecf-8335-d9f9960ded3d" />
+
+<img width="260" alt="Screenshot 2026-09-20 164229" src="https://github.com/user-attachments/assets/8e12b40b-512f-4bd2-ada0-5c7dabd9d86d" />
+
+<img width="260" alt="Screenshot 2026-09-20 164249" src="https://github.com/user-attachments/assets/ad550893-487b-4475-9277-4501fb222477" />
+
+
+
+### Add Tasks (Light Mode and Dark Mode)
+
+<img width="260" alt="Screenshot 2026-09-20 163916" src="https://github.com/user-attachments/assets/249d458b-4317-4457-aec6-95e48689f172" />
+
+<img width="260" alt="Screenshot 2026-09-20 163902" src="https://github.com/user-attachments/assets/4caecb2f-546a-4659-a5cc-382513cc5afc" />
+
+
+
+### Edit Task (Light Mode and Dark Mode)
+
+<img width="260" alt="Screenshot 2026-09-20 164444" src="https://github.com/user-attachments/assets/41b9bd8f-b67f-4094-887a-4c5a4d282b93" />
+
+<img width="260" alt="Screenshot 2026-09-20 164452" src="https://github.com/user-attachments/assets/bc2adcb0-3924-4d1c-86f7-3693a994a2ea" />
+
+
+
+### Search Screen (Light Mode and Dark Mode)
+
+<img width="260" alt="Screenshot 2026-09-20 164311" src="https://github.com/user-attachments/assets/13139e14-df4b-4ad7-b3c4-1fe850b23b72" />
+
+<img width="260" alt="Screenshot 2026-09-20 164301" src="https://github.com/user-attachments/assets/49480a89-2c28-48b6-b8f8-7a87119df5ca" />
+
+
+
+### Stats Screen (Light Mode and Drak Mode)
+
+<img width="260" alt="Screenshot 2026-09-20 164321" src="https://github.com/user-attachments/assets/8e441658-3e6c-4626-8e79-9488c58a873f" />
+
+<img width="260" alt="Screenshot 2026-09-20 164333" src="https://github.com/user-attachments/assets/467aa346-ec7a-4af7-b0f0-df41eb26a3d9" />
+
+<img width="260" alt="Screenshot 2026-09-20 164346" src="https://github.com/user-attachments/assets/3abe6fbc-4097-4e7f-87c7-5eca654d2402" />
+
+<img width="260" alt="Screenshot 2026-09-20 164355" src="https://github.com/user-attachments/assets/bdb4bbe2-86f1-4371-9a70-5f42b1000df2" />
+
+
+
+### Settings Screen (Light Mode and Dark Mode)
+
+<img width="260" alt="Screenshot 2026-09-20 164411" src="https://github.com/user-attachments/assets/35fa98f7-f370-4cd7-ad43-fcaa07c88c86" />
+
+<img width="260" alt="Screenshot 2026-09-20 164402" src="https://github.com/user-attachments/assets/cb1f35af-b5e7-4213-8ba1-cdb3148bc989" />
+
+
